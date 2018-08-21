@@ -5,11 +5,11 @@ class LunchRequestsController < ApplicationController
   end
 
   def create
-    @lunch_request = LunchRequest(lunch_request_params)
+    @lunch_request = LunchRequest.new(lunch_request_params)
     @lunch_request.user = current_user
     authorize @lunch_request
     if @lunch_request.save
-      redirect_to LunchRequest_show_path(@lunch_request)
+      redirect_to lunch_request_path(@lunch_request)
     else
       render :new
     end

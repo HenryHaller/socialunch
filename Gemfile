@@ -17,7 +17,6 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
-gem 'devise'
 gem 'faker'
 gem 'pundit'
 gem 'cloudinary'

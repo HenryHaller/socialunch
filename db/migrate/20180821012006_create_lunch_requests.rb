@@ -4,6 +4,7 @@ class CreateLunchRequests < ActiveRecord::Migration[5.2]
       t.datetime :datetime
       t.integer :suggested_duration
       t.string :lunch_type
+      t.references :user
 
       t.timestamps
     end

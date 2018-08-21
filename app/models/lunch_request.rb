@@ -1,0 +1,2 @@
+class LunchRequest < ApplicationRecord
+end

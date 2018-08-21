@@ -1,2 +1,8 @@
-<h1>LunchRequest#new</h1>
-<p>Find me in app/views/lunch_request/new.html.erb</p>
+<div class="text-center">
+  <%= simple_form_for @lunch_request do |f| %>
+    <%= f.input :lunch_type, collection: LunchRequest::TYPES %>
+    <%= f.input :datetime, as: :date, start_date: Date.today %>
+    <%= f.input :suggested_duration, collection: [30, 60, 90, 120] %>
+    <%= f.button :submit %>
+  <% end %>
+</div>

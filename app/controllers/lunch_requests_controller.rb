@@ -1,4 +1,4 @@
-class LunchRequestController < ApplicationController
+class LunchRequestsController < ApplicationController
   def new
     @lunch_request = LunchRequest.new
   end

@@ -1,8 +1,14 @@
-<div class="text-center">
-  <%= simple_form_for @lunch_request do |f| %>
-    <%= f.input :lunch_type, collection: LunchRequest::TYPES %>
-    <%= f.input :datetime, as: :date, start_date: Date.today %>
-    <%= f.input :suggested_duration, collection: [30, 60, 90, 120] %>
-    <%= f.button :submit %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="text-center">
+        <%= simple_form_for @lunch_request do |f| %>
+          <%= f.input :lunch_type, collection: LunchRequest::TYPES %>
+          <%= f.input :datetime, as: :date, start_date: Date.today %>
+          <%= f.input :suggested_duration, collection: [30, 60, 90, 120] %>
+          <%= f.button :submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

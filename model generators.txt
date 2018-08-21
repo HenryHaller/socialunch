@@ -1,0 +1,9 @@
+rails g model restaurant address:string latitude:float longitude:float name:string description:text cuisine:string phone_number:string
+
+rails g model lunch_date user:references restaurant:references begin:datetime suggested_duration:integer lunch_type:string
+rails g model lunch_request datetime:datetime
+
+
+rails generate devise User
+
+rails g migration AddDataToUser first_name:string last_name:string birthday:integer smoking:boolean bio:text

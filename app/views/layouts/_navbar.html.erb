@@ -1,18 +1,14 @@
 <div class="navbar-hint"></div>
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to image_tag("spotfind.png"), root_path, class: "navbar-wagon-brand" %>
+  <%= link_to "Home", root_path, class: "navbar-wagon-brand" %>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
       <h5>Hello <%= current_user.first_name.try(:capitalize) %>! </h5>
       <!-- Links when logged in -->
-      <%= link_to "Add Car", new_car_path, style: 'color: white', class: "btn btn-primary navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Book Now", root_path, style: 'color: white', class: "btn btn-danger navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Add Spot", new_spot_path, style: 'color: white', class: "btn btn-primary navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My Bookings", bookings_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My Cars", cars_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "My Spots", spots_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Edit Profile", edit_user_registration_path, style: 'color: white', class: "btn btn-primary navbar-wagon-item navbar-wagon-link" %>
+
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
         <div class="dropdown">
@@ -38,7 +34,6 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to "Home", root_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Sign up", new_user_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>

@@ -1,11 +1,13 @@
 class LunchRequestsController < ApplicationController
   def new
     @lunch_request = LunchRequest.new
+    authorize @lunch_request
   end
 
   def create
     @lunch_request = LunchRequest(lunch_request_params)
     @lunch_request.user = current_user
+    authorize @lunch_request
     if @lunch_request.save
       redirect_to LunchRequest_show_path(@lunch_request)
     else
@@ -14,7 +16,9 @@ class LunchRequestsController < ApplicationController
   end
 
   def show
-    LunchRequest.find(params[:id])
+    @lunch_request = LunchRequest.find(params[:id])
+    authorize @lunch_request
+
   end
 
   def destroy

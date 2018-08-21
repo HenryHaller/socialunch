@@ -1,7 +1,13 @@
 <div class="navbar-hint"></div>
 <div class="navbar-wagon">
   <!-- Logo -->
-  <%= link_to "Home", root_path, class: "navbar-wagon-brand" %>
+  <div class="logo">
+    <%= link_to image_tag("socialunch_logo.png"), root_path, class: "navbar-wagon-brand" %>
+    <div class="navbar_name">
+      <h2>SociaLunch</h2>
+    </div>
+  </div>
+
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <% if user_signed_in? %>

@@ -10,9 +10,20 @@
   justify-content: space-between;
 }
 
+.logo {
+  display: flex;
+  margin: 5px;
+}
+
+.navbar_name h2 {
+  color: #7EB2DD;
+}
+
 /* Logo */
 .navbar-wagon-brand img {
   height: 50px;
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 /* User Avatar */

@@ -18,7 +18,6 @@ class LunchRequestsController < ApplicationController
   def show
     @lunch_request = LunchRequest.find(params[:id])
     authorize @lunch_request
-
   end
 
   def destroy

@@ -6,7 +6,7 @@ class LunchDatePolicy < ApplicationPolicy
   end
 
   def show?
-    scope.where(:id => record.id).exists? && ( user == record.user || user == record.second_user )
+    user == record.user || user == record.second_user
   end
 
 end

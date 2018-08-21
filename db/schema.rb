@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 2018_08_21_012008) do
     t.datetime "datetime"
     t.integer "suggested_duration"
     t.string "lunch_type"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_lunch_requests_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|

@@ -34,12 +34,14 @@ ActiveRecord::Schema.define(version: 2018_08_22_064544) do
     t.integer "suggested_duration"
     t.string "lunch_type"
     t.bigint "user_id"
+    t.bigint "lunch_date_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true, null: false
     t.float "latitude", default: 0.0, null: false
     t.float "longitude", default: 0.0, null: false
     t.string "address", default: "Yemen Road", null: false
+    t.index ["lunch_date_id"], name: "index_lunch_requests_on_lunch_date_id"
     t.index ["user_id"], name: "index_lunch_requests_on_user_id"
   end
 

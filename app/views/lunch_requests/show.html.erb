@@ -1,3 +1,11 @@
-<h1>Your request is waiting for a match!</h1>
-<p>Your <%= @lunch_request.lunch_type %> lunch request for <%= @lunch_request.suggested_duration %> minutes at <%= @lunch_request.datetime %></p>
-<img src="https://media.giphy.com/media/2Faz6BO8sFxaCrtew/giphy.gif" alt="I CAN HAZ CHEEZBURGER!">
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-2">
+      <div class="content">
+        <h1>Your request is waiting for a match!</h1>
+        <p>Your <%= @lunch_request.lunch_type %> lunch request for <%= @lunch_request.suggested_duration %> minutes at <%= @lunch_request.datetime %></p>
+      </div>
+    </div>
+  </div>
+</div>

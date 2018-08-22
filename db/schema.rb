@@ -16,17 +16,17 @@ ActiveRecord::Schema.define(version: 2018_08_22_064544) do
   enable_extension "plpgsql"
 
   create_table "lunch_dates", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "second_user_id"
+    t.bigint "request1_id"
+    t.bigint "request2_id"
     t.bigint "restaurant_id"
     t.datetime "begin"
     t.integer "suggested_duration"
     t.string "lunch_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["request1_id"], name: "index_lunch_dates_on_request1_id"
+    t.index ["request2_id"], name: "index_lunch_dates_on_request2_id"
     t.index ["restaurant_id"], name: "index_lunch_dates_on_restaurant_id"
-    t.index ["second_user_id"], name: "index_lunch_dates_on_second_user_id"
-    t.index ["user_id"], name: "index_lunch_dates_on_user_id"
   end
 
   create_table "lunch_requests", force: :cascade do |t|

@@ -6,7 +6,7 @@ class LunchDatePolicy < ApplicationPolicy
   end
 
   def show?
-    user == record.user || user == record.second_user
+    user == record.request1.user || user == record.request2.user
   end
 
 end

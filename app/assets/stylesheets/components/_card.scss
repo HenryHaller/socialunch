@@ -1,13 +1,16 @@
 .card {
-  height: 175px;
+  height: 400px;
+  width: 550px;
   // text-shadow: 0 1px 3px rgba(0,0,0,0.6);
   background-size: cover !important;
   background-position: center;
   color: white;
   position: relative;
   margin: 10px;
+  margin-bottom: 150px;
   box-shadow: 0 0 8px gray;
   border-radius: 10px;
+  opacity: 0.8;
 }
 .card-user {
   position: absolute;
@@ -17,18 +20,9 @@
   height: 150px;
   background-size: cover;
 }
-.card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 15px;
-  text-transform: uppercase;
-}
 .card-description {
   position: absolute;
-  bottom: 30px;
-  left: 220px;
-  top: 20px;
+
 }
 .card-description h2 {
   font-size: 24px;
@@ -54,9 +48,4 @@
 
 .howitworks {
   text-align: center;
-}
-
-.howitworks h3 {
-  font-size: 36px;
-  color: #7EB2DD;
 }

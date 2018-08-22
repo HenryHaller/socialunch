@@ -66,9 +66,14 @@ class MakeMatchesJob < ApplicationJob
         suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
         lunch_type: pair[0].lunch_type
         )
-      lunch.save
-      puts lunch.errors.messages if lunch.errors.any?
-      p lunch
+      if lunch.save
+        p lunch
+        pair[0].deactivate
+        pair[1].deactivate
+      else
+        puts lunch.errors.messages if lunch.errors.any?
+      end
+
     end
   end
 end

@@ -50,14 +50,14 @@ class MakeMatchesJob < ApplicationJob
         have_pairs << request unless have_pairs.include?(request)
       end
     end
-    puts "delete indexes #{delete_indexes}"
+    # puts "delete indexes #{delete_indexes}"
     delete_indexes.reverse_each do |index|
       request_pairs.delete_at(index)
     end
 
-    puts request_pairs.count
+    # puts request_pairs.count
     request_pairs.each do |pair|
-      puts "making lunch for #{pair}"
+      # puts "making lunch for #{pair}"
       lunch = LunchDate.new(
         request1: pair[0],
         request2: pair[1],

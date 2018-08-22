@@ -52,10 +52,12 @@ end
 puts "made #{LunchRequest.count} lunch requests"
 
 puts "making lunch dates"
-6.times do |variable|
-  LunchDate.create(user: User.all.sample, second_user: User.all.sample, restaurant: Restaurant.all.sample,
-    begin: Time.now, suggested_duration: 60, lunch_type: ["casual", "professional"].sample)
-end
+
+MakeMatchesJob.perform_now
+# 6.times do |variable|
+#   LunchDate.create(user: User.all.sample, second_user: User.all.sample, restaurant: Restaurant.all.sample,
+#     begin: Time.now, suggested_duration: 60, lunch_type: ["casual", "professional"].sample)
+# end
 puts "made #{LunchDate.count} lunch dates"
 
 "Made #{Restaurant.count} restaurants"

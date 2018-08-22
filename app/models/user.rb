@@ -9,6 +9,5 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :birthday, :bio, presence: true
   validates :smoking, inclusion: { in: [true, false] }
   has_many :lunch_requests
-  has_many :lunch_dates
-  has_many :restaurants, through: :lunch_dates
+  # has_many :restaurants, through: :lunch_dates
 end

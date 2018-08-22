@@ -59,8 +59,8 @@ class MakeMatchesJob < ApplicationJob
     request_pairs.each do |pair|
       puts "making lunch for #{pair}"
       lunch = LunchDate.new(
-        user: pair[0].user,
-        second_user: pair[1].user,
+        request1: pair[0],
+        request2: pair[1],
         restaurant: Restaurant.all.sample,
         begin: Time.at(( pair[0].datetime.to_i + pair[1].datetime.to_i ) / 2),
         suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,

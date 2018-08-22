@@ -1,6 +1,7 @@
 class LunchRequestsController < ApplicationController
   def new
     @lunch_request = LunchRequest.new
+    @coordinates = Geocoder.search(request.remote_ip)
     authorize @lunch_request
   end
 

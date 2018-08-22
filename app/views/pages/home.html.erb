@@ -1,20 +1,27 @@
 <div class="banner" style="background-image:linear-gradient(-200deg, rgba(0,90,168,0.9), 0%, rgba(10,50,61,0.3) 40%), url('<%= image_path("lunch_together.jpg") %>');">
   <div class="banner-content">
-    <h2>Don't eat alone, <br>meet interesting people near you.</h2>
+    <h2> Meet interesting people near you.</h2>
   </div>
 </div>
 <div class="container">
-  <div class="row">
+  <div class="quick_links">
+    <nav>
+      <a href="#short-answer">PICK</a>
+      <a href="#long-answer">MATCH</a>
+      <a href="#side-effects">EAT</a>
+    </nav>
+  </div>
+  <div class="row" id="short-answer">
     <div class="col-xs-12 col-sm-4">
       <!-- insert <div class="card"> -->
         <div class="card" style="background-color: #FD6A02;">
           <div class="card-description">
-            <h2>Input desired lunch preferences.</h2>
+            <h2>Pick your preferred meal.</h2>
           </div>
         </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" id="long-answer">
     <div class="col-xs-12 col-sm-4 col-sm-offset-6">
       <!-- insert <div class="card"> -->
         <div class="card" style="background-color: #FD6A02;">
@@ -24,7 +31,7 @@
         </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" id="side-effects">
     <div class="col-xs-12 col-sm-4">
       <!-- insert <div class="card"> -->
         <div class="card" style="background-color: #FD6A02;">

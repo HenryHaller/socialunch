@@ -68,6 +68,9 @@ class MakeMatchesJob < ApplicationJob
         )
       if lunch.save
         p lunch
+        pair[0].lunch_date = lunch
+        pair[1].lunch_date = lunch
+        lunch.save
         pair[0].deactivate
         pair[1].deactivate
       else

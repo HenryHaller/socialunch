@@ -23,6 +23,9 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'geocoder'
 gem 'acts-as-taggable-on', '~> 6.0'
+gem 'sidekiq'
+gem 'sidekiq-failures', '~> 1.0'
+
 
 gem 'whenever', require: false
 

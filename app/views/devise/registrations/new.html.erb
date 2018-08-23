@@ -53,7 +53,8 @@
               <%= f.input :password_confirmation,
                           required: true,
                           input_html: { autocomplete: "new-password" } %>
-              <%= f.input :language_list %>
+              <%= f.input :language_list, as: :check_boxes, collection: ["English", "Japanese", "French", "Spanish", "Mandarin", "Russian", "Hindi", "Italian", "Other"],
+                  hint: "mark the languages you speak" %>
             </div>
             <div class="form-actions">
               <%= f.button :submit, "Sign up" %>

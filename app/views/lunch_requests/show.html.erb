@@ -20,3 +20,13 @@
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    console.log("my script runs");
+    App['incoming_requests'] = App.cable.subscriptions.create(
+      { channel: 'IncomingRequestsChannel' },
+      { received: (data) => console.log(data) }
+    );
+  </script>
+<% end %>

@@ -3,9 +3,12 @@
   <!-- Logo -->
   <div class="logo">
     <%= link_to image_tag("socialunch_logo.png"), root_path, class: "navbar-wagon-brand" %>
-    <div class="navbar_name">
-      <h2>SociaLunch</h2>
-    </div>
+    <%= link_to root_path, class: "navbar-wagon-brand" do %>
+      <div class="navbar_name">
+        <h2>SociaLunch</h2>
+      </div>
+    <% end %>
+
   </div>
 
   <!-- Right Navigation -->

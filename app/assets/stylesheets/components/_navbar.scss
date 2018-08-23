@@ -19,11 +19,16 @@
   color: #FD6A02;
 }
 
+
 /* Logo */
 .navbar-wagon-brand img {
   height: 50px;
   margin-top: 10px;
   margin-right: 10px;
+}
+
+.navbar-wagon-brand {
+  text-decoration: none !important;
 }
 
 /* User Avatar */

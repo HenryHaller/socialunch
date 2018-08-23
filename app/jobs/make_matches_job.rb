@@ -33,6 +33,7 @@ class MakeMatchesJob < ApplicationJob
   end
 
   def perform(*args)
+    puts "MAKING MATCHES"
     requests = LunchRequest.where(active: true).to_a
     request_pairs = []
     while requests.length > 0
@@ -71,11 +72,15 @@ class MakeMatchesJob < ApplicationJob
         pair[0].lunch_date = lunch
         pair[1].lunch_date = lunch
         lunch.save
+        ActionCable.server.broadcast("incoming_requests", {
+          lunch_date: lunch
+        })
         pair[0].deactivate
         pair[1].deactivate
       else
         puts lunch.errors.messages if lunch.errors.any?
       end
+
 
     end
   end

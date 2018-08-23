@@ -27,7 +27,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 
 
-gem 'whenever', require: false
+# gem 'whenever', require: false
 
 group :development do
   gem 'web-console', '>= 3.3.0'

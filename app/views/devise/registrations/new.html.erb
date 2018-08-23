@@ -34,7 +34,7 @@
   <div class="banner-content">
     <div class="container">
       <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-12">
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= f.error_notification %>
             <div class="form-inputs">
@@ -59,8 +59,6 @@
               <%= f.input :password_confirmation,
                           required: true,
                           input_html: { autocomplete: "new-password" } %>
-              <%= f.input :language_list, as: :check_boxes, collection: ["English", "Japanese", "French", "Spanish", "Mandarin", "Russian", "Hindi", "Italian", "Other"],
-                  hint: "mark the languages you speak" %>
             </div>
             <div class="form-actions">
               <%= f.button :submit, "Sign up" %>

@@ -53,12 +53,23 @@
 }
 
 .quick_links a{
+
   text-decoration: none;
   font-size: 48px;
   font-weight: bold;
   color: #FD6A02 !important;
   margin-right: 50px;
   margin-left: 50px;
-  padding: 50px;
+  padding-bottom: -100px;
+
+}
+
+.quick_links {
+  position: relative;
+  margin-top: -70px;
+  background-color: #CBDFF0;
+  border-radius: 10px;
+  padding: 50;
+  box-shadow: 2px 5px 3px #E6E6E6;
 }
 

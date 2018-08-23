@@ -15,9 +15,9 @@ LunchRequest.delete_all
 puts "making restaurants"
 6.times do |variable|
   Restaurant.create(address: Faker::Address.full_address,
-  latitude: Faker::Address.latitude, longitude: Faker::Address.longitude,
-  name: Faker::Pokemon.name, description: Faker::TheITCrowd.quote,
-  cuisine: Faker::Superhero.power, phone_number: Faker::PhoneNumber.cell_phone)
+                    latitude: Faker::Address.latitude, longitude: Faker::Address.longitude,
+                    name: Faker::Pokemon.name, description: Faker::TheITCrowd.quote,
+                    cuisine: Faker::Superhero.power, phone_number: Faker::PhoneNumber.cell_phone)
 end
 puts "made #{Restaurant.count} restaurants"
 
@@ -29,8 +29,7 @@ puts "making users "
     first_name: Faker::Dog.name,
     last_name: Faker::Cat.name,
     birthday: (Time.now - (18..65).to_a.sample.years),
-    smoking: [true, false].sample,
-    bio: Faker::TheFreshPrinceOfBelAir.quote)
+  bio: Faker::TheFreshPrinceOfBelAir.quote)
   u.save
   puts u.errors.messages if u.errors.any?
 
@@ -45,7 +44,7 @@ User.all.each do |user|
     suggested_duration: [30, 60, 90, 120].sample,
     lunch_type: ["casual", "professional"].sample,
     user: user
-    )
+  )
   l.save
   puts l.errors.messages if l.errors.any?
 end

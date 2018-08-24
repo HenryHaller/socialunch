@@ -7,7 +7,6 @@ class LunchRequest < ApplicationRecord
     message: "You can not save a request with the default address",
     allow_nil: false
   }
-
   belongs_to :user
   has_one :lunch_date
   geocoded_by :address
@@ -19,5 +18,8 @@ class LunchRequest < ApplicationRecord
     self.active = false
     self.save
   end
+
+
+
 
 end

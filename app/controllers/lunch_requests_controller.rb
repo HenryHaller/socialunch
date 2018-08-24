@@ -1,5 +1,11 @@
 class LunchRequestsController < ApplicationController
   def new
+    @lunch_request = current_user.other_active_request
+    if @lunch_request
+      authorize @lunch_request
+      redirect_to lunch_request_path(@lunch_request) and return
+    end
+
     @lunch_request = LunchRequest.new
     @coordinates = Geocoder.search(request.remote_ip)
     authorize @lunch_request
@@ -7,8 +13,10 @@ class LunchRequestsController < ApplicationController
 
   def create
     @lunch_request = LunchRequest.new(lunch_request_params)
-    @lunch_request.user = current_user
     authorize @lunch_request
+    @lunch_request.user = current_user
+    other_active_request = current_user.other_active_request
+    redirect_to lunch_request_path(other_active_request) and return if other_active_request
     if @lunch_request.save
       # notify_incoming_requests_channel
       # MakeMatchesJob.perform_now

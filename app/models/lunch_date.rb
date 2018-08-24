@@ -4,4 +4,8 @@ class LunchDate < ApplicationRecord
   belongs_to :restaurant
 
   validates :request1, :request2, :restaurant, :begin, :lunch_type, presence: true
+  validate :not_a_self_match
+  def not_a_self_match
+    self.request1.id != self.request2.id
+  end
 end

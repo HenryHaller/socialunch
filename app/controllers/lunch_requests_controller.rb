@@ -11,7 +11,9 @@ class LunchRequestsController < ApplicationController
     authorize @lunch_request
     if @lunch_request.save
       # notify_incoming_requests_channel
-      MakeMatchesJob.perform_now
+      # MakeMatchesJob.perform_now
+      # MakeMatchesJob.perform_later
+      MakeMatchesJob.set(wait: 5.seconds).perform_later
       # @lunch_date = @lunch_request.lunch_date if @lunch_request.lunch_date
       redirect_to lunch_request_path(@lunch_request)
     else

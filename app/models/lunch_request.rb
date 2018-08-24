@@ -12,6 +12,9 @@ class LunchRequest < ApplicationRecord
  belongs_to :lunch_date, optional: true
  geocoded_by :address
  after_validation :geocode, if: :will_save_change_to_address?
+ # validate :user_doesnt_already_have_an_active_request?
+
+
 
 
  TYPES = ["casual", "professional"]
@@ -19,5 +22,8 @@ class LunchRequest < ApplicationRecord
   self.active = false
   self.save
 end
+
+
+
 
 end

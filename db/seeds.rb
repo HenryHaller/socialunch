@@ -48,6 +48,7 @@ User.all.each do |user|
   )
   l.save
   puts l.errors.messages if l.errors.any?
+
 end
 puts "made #{LunchRequest.count} lunch requests"
 

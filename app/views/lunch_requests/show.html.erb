@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-2">
@@ -20,24 +19,27 @@
     </div>
   </div>
 </div>
-
 <% if @lunch_request.lunch_date %>
   <%= @lunch_request.lunch_date %>
   <%= @lunch_request.lunch_date.begin %>
   <%= @lunch_request.lunch_date.suggested_duration %>
-
 <% end %>
-
-
 <% content_for :after_js do %>
   <script>
     console.log("my script runs");
     App['incoming_requests'] = App.cable.subscriptions.create(
       { channel: 'IncomingRequestsChannel' },
-      { received: (data) =>
-
-        console.log(data)
-      }
+      { received: (data) => {
+        console.log(data);
+        const myRequestId = <%= @lunch_request.id %>;
+        if ( myRequestId === data.lunch_date.request1_id || myRequestId === data.lunch_date.request2_id ) {
+         console.log('concerned')
+         window.location.replace("<%= lunch_dates_path %>/" + data.lunch_date.id);
+    
+        } else {
+         console.log('not concerned in this match')
+        }
+      } }
     );
   </script>
 <% end %>

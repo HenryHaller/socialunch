@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :lunch_requests, only: [:new, :create, :show, :destroy]
-  resources :lunch_dates, only: [:show]
+  resources :lunch_dates, only: [:index, :show]
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'

@@ -36,6 +36,6 @@ class LunchRequestsController < ApplicationController
 
 
   def lunch_request_params
-    params.require(:lunch_request).permit(:datetime, :suggested_duration, :lunch_type)
+    params.require(:lunch_request).permit(:datetime, :suggested_duration, :lunch_type, :address)
   end
 end

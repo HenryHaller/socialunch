@@ -20,3 +20,24 @@
     </div>
   </div>
 </div>
+
+<% if @lunch_request.lunch_date %>
+<%= @lunch_request.lunch_date %>
+<%= lunch_request.lunch_date.begin %>
+<%= lunch_request.lunch_date.suggested_duration %>
+
+<% end %>
+
+
+<% content_for :after_js do %>
+  <script>
+    console.log("my script runs");
+    App['incoming_requests'] = App.cable.subscriptions.create(
+      { channel: 'IncomingRequestsChannel' },
+      { received: (data) =>
+
+        console.log(data)
+      }
+    );
+  </script>
+<% end %>

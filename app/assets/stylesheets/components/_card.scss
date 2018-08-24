@@ -7,7 +7,8 @@
   color: white;
   position: relative;
   margin: 10px;
-  margin-bottom: 150px;
+  margin-top: 90px;
+  margin-bottom: 300px;
   box-shadow: 0 0 8px gray;
   border-radius: 10px;
   opacity: 0.8;
@@ -45,10 +46,19 @@
   background: black;
   opacity: 0;
 }
-.card-link:hover {
-  opacity: 0.1;
+
+.quick_links :hover{
+  opacity: 0.6;
+
 }
 
-.howitworks {
-  text-align: center;
+.quick_links a{
+  text-decoration: none;
+  font-size: 48px;
+  font-weight: bold;
+  color: #FD6A02 !important;
+  margin-right: 50px;
+  margin-left: 50px;
+  padding: 50px;
 }
+

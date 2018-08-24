@@ -13,8 +13,8 @@ class MakeMatchesJob < ApplicationJob
 
   def duration_match(pair)
     (pair[0].suggested_duration == pair[1].suggested_duration - 30) ||
-    (pair[0].suggested_duration == pair[1].suggested_duration + 30) ||
-    (pair[0].suggested_duration == pair[1].suggested_duration)
+      (pair[0].suggested_duration == pair[1].suggested_duration + 30) ||
+      (pair[0].suggested_duration == pair[1].suggested_duration)
   end
 
   def type_match(pair)
@@ -36,9 +36,9 @@ class MakeMatchesJob < ApplicationJob
     puts
     puts ">>>>>>>>>>> Running MakeMatchesJob <<<<<<<<<<<<<<<"
     puts
-    ActionCable.server.broadcast( "incoming_requests" , {
-      lunch_date: "inside of the making matches job"
-    })
+    # ActionCable.server.broadcast( "incoming_requests" , {
+    #   lunch_date: "inside of the making matches job"
+    # })
 
     requests = LunchRequest.where(active: true).to_a
     request_pairs = []
@@ -70,40 +70,37 @@ class MakeMatchesJob < ApplicationJob
         request2: pair[1],
         restaurant: Restaurant.all.sample,
         begin: Time.at(( pair[0].datetime.to_i + pair[1].datetime.to_i ) / 2),
-        suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
-        lunch_type: pair[0].lunch_type
-        )
-      if lunch.save
-        puts
-        puts
-        puts
-        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
-        p lunch
-        # ActionCable.server.broadcast("incoming_requests", {
-        #   lunch_date: ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blah"
-        # })
-        ActionCable.server.broadcast( "incoming_requests" , {
-          lunch_date: "we have saved a lunch"
-        })
+            suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
+            lunch_type: pair[0].lunch_type
+          )
+          if lunch.save
+            puts
+            puts
+            puts
+            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
+            p lunch
+            # # ActionCable.server.broadcast("incoming_requests", {
+            # #   lunch_date: ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blah"
+            # # })
+            # ActionCable.server.broadcast( "incoming_requests" , {
+            #   lunch_date: "we have saved a lunch"
+            # })
 
-        ActionCable.server.broadcast( "incoming_requests" , {
-          lunch_date: lunch
-        })
-        puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sent action cable'
-        pair[0].lunch_date = lunch
-        pair[1].lunch_date = lunch
-        pair[0].save
-        pair[1].save
-        pair[0].deactivate
-        pair[1].deactivate
-      else
-        puts lunch.errors.messages if lunch.errors.any?
-      end
-
-
-    end
-  end
-end
+            ActionCable.server.broadcast( "incoming_requests" , {
+                                            lunch_date: lunch
+            })
+            puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sent action cable'
+            pair[0].lunch_date = lunch
+            pair[1].lunch_date = lunch
+            pair[0].save
+            pair[1].save
+            pair[0].deactivate
+            pair[1].deactivate
+          else
+            puts lunch.errors.messages if lunch.errors.any?
+          end
 
 
-
+        end
+        end
+        end

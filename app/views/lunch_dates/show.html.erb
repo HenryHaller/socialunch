@@ -1,2 +1,29 @@
-<h1>LunchDate#show</h1>
-<p>Find me in app/views/lunch_date/show.html.erb</p>
+<h2 class="text-center">You matched with a lunch buddy!</h2>
+<div class="text-center">
+  <p>You will have a <%= @lunch_date.lunch_type %> lunch</p>
+  <p>at <%= @lunch_date.begin %></p>
+  <p>for <%= @lunch_date.suggested_duration %> minutes</p>
+</div>
+<div>
+  <% if current_user == @lunch_date.request1.user %>
+    <% primary_user = @lunch_date.request1.user %>
+    <% secondary_user = @lunch_date.request2.user %>
+  <% else %>
+    <% primary_user = @lunch_date.request2.user %>
+    <% secondary_user = @lunch_date.request1.user %>
+  <% end %>
+  <div class="row text-center">
+    <div>
+      You:<%= "#{primary_user.first_name.capitalize} #{primary_user.last_name.capitalize}" %>
+      Your Bio:<%= primary_user.bio %>
+    </div>
+    <div>
+      Them:<%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %>
+      Their Bio:<%= secondary_user.bio %>
+    </div>
+  </div>
+</div>
+<div class=text-center>
+  <%= @lunch_date.restaurant.name %>
+  <%= @lunch_date.restaurant.address %>
+</div>

@@ -33,7 +33,13 @@ class MakeMatchesJob < ApplicationJob
   end
 
   def perform(*args)
-    puts "MAKING MATCHES"
+    puts
+    puts ">>>>>>>>>>> Running MakeMatchesJob <<<<<<<<<<<<<<<"
+    puts
+    ActionCable.server.broadcast( "incoming_requests" , {
+      lunch_date: "inside of the making matches job"
+    })
+
     requests = LunchRequest.where(active: true).to_a
     request_pairs = []
     while requests.length > 0
@@ -68,13 +74,26 @@ class MakeMatchesJob < ApplicationJob
         lunch_type: pair[0].lunch_type
         )
       if lunch.save
+        puts
+        puts
+        puts
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
         p lunch
-        pair[0].lunch_date = lunch
-        pair[1].lunch_date = lunch
-        lunch.save
-        ActionCable.server.broadcast("incoming_requests", {
+        # ActionCable.server.broadcast("incoming_requests", {
+        #   lunch_date: ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blah"
+        # })
+        ActionCable.server.broadcast( "incoming_requests" , {
+          lunch_date: "we have saved a lunch"
+        })
+
+        ActionCable.server.broadcast( "incoming_requests" , {
           lunch_date: lunch
         })
+        puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sent action cable'
+        pair[0].lunch_date = lunch
+        pair[1].lunch_date = lunch
+        pair[0].save
+        pair[1].save
         pair[0].deactivate
         pair[1].deactivate
       else

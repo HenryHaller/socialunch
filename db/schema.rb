@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2018_08_22_064544) do
     t.datetime "remember_created_at"
     t.string "first_name"
     t.string "last_name"
-    t.integer "birthday"
+    t.datetime "birthday"
     t.boolean "smoking"
     t.text "bio"
     t.boolean "admin", default: false, null: false

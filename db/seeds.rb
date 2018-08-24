@@ -40,6 +40,7 @@ puts "made #{User.count} users"
 puts "making lunch requests"
 User.all.each do |user|
   l = LunchRequest.create(
+    address: Faker::Address.full_address,
     datetime: Time.now,
     suggested_duration: [30, 60, 90, 120].sample,
     lunch_type: ["casual", "professional"].sample,

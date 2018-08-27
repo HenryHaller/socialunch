@@ -95,12 +95,12 @@ class MakeMatchesJob < ApplicationJob
         # suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
         # lunch_type: pair[0].lunch_type
           )
-      if lunch.save
-        puts
-        puts
-        puts
-        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
-        p lunch
+          if lunch.save
+            puts
+            puts
+            puts
+            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
+            p lunch
             # # ActionCable.server.broadcast("incoming_requests", {
             # #   lunch_date: ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blah"
             # # })
@@ -109,7 +109,7 @@ class MakeMatchesJob < ApplicationJob
             # })
 
             ActionCable.server.broadcast( "incoming_requests" , {
-              lunch_date: lunch
+                                            lunch_date: lunch
             })
             puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sent action cable'
             pair[0].lunch_date = lunch
@@ -124,5 +124,5 @@ class MakeMatchesJob < ApplicationJob
 
 
         end
-      end
-    end
+        end
+        end

@@ -36,9 +36,9 @@
             <%= simple_form_for @lunch_request do |f| %>
               <div class="form-inputs">
                 <%= f.input :datetime, label: 'What time are you available for lunch?', as: :radio_buttons, collection: ["10am - 11am", "11am - 12pm", "12pm - 1pm", "1pm - 2pm"] %>
-
-<!--                 <%= f.input :address, label: "Where are you?", placeholder: "Your full address." %>
- -->                <%= f.button :submit %>
+                  <input type="hidden" id="lat" name="lunch_request[latitude]" value="0" />
+                  <input type="hidden" id="lng" name="lunch_request[longitude]" value="0" />
+                <%= f.button :submit %>
               </div>
             <% end %>
           </div>

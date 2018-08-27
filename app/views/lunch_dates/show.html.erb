@@ -9,7 +9,6 @@
       <div class="match_content">
         <div class="text-center">
           <p>You will have a <%= @lunch_date.lunch_type %> lunch</p>
-          <p>at <%= @lunch_date.begin.strftime("%l:%M %p") %>
           for <%= @lunch_date.suggested_duration %> minutes</p>
         </div>
         <div>
@@ -36,11 +35,11 @@
         <div class="matched_address">
           <div class=text-center>
             <h3>Suggested Restaurant Address:</h3>
-            <p><%= @lunch_date.restaurant.name %>
-            <%= @lunch_date.restaurant.address %></p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<%= @lunch_date.gmaps_place_id %>

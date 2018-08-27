@@ -38,6 +38,7 @@ class LunchRequestsController < ApplicationController
 
   def destroy
     lunch_request = LunchRequest.find(params[:id])
+    authorize lunch_request
     lunch_request.destroy
     redirect_to root_path
   end

@@ -1,7 +1,7 @@
 .devisebanner {
   color: white;
   height: calc(100vh);
-  background-size: cover;
+  background-size: cover !important;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   align-items: center;
   opacity: 0.8;
@@ -16,7 +16,7 @@
   font-weight: lighter;
   color: rgb(255, 255, 255);
   opacity: 0.9;
-  margin-top: 30px;
+  // margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -27,6 +27,6 @@
 }
 
 .lunch_request_new_map {
-
+  margin-top: 50px;
 
 }

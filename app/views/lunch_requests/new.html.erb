@@ -1,6 +1,4 @@
-<script>
-  <%= render "autocomplete.js" %>
-</script>
+
 
 <style type="text/css">
   .container {
@@ -27,6 +25,8 @@
       font-size: 32px;
     }
 </style>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
+
 <div class="devisebanner" style="background-image:linear-gradient(-200deg, rgba(0,90,168,0.9), 0%, rgba(10,50,61,0.3) 40%), url('<%= image_path("lunch_together.jpg") %>');">
   <div class="banner-content">
     <div class="container">
@@ -36,43 +36,6 @@
             <%= simple_form_for @lunch_request do |f| %>
               <div class="form-inputs">
                 <%= f.input :datetime, label: 'What time are you available for lunch?', as: :radio_buttons, collection: ["10am - 11am", "11am - 12pm", "12pm - 1pm", "1pm - 2pm"] %>
-                              <div id="locationField">
-                <input id="autocomplete" placeholder="Enter your address"
-                       onFocus="geolocate()" type="text"></input>
-              </div>
-
-              <table id="address">
-                <tr>
-                  <td class="label">Street address</td>
-                  <td class="slimField"><input class="field" id="street_number"
-                        disabled="true"></input></td>
-                  <td class="wideField" colspan="2"><input class="field" id="route"
-                        disabled="true"></input></td>
-                </tr>
-                <tr>
-                  <td class="label">City</td>
-                  <!-- Note: Selection of address components in this example is typical.
-                       You may need to adjust it for the locations relevant to your app. See
-                       https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-                  -->
-                  <td class="wideField" colspan="3"><input class="field" id="locality"
-                        disabled="true"></input></td>
-                </tr>
-                <tr>
-                  <td class="label">State</td>
-                  <td class="slimField"><input class="field"
-                        id="administrative_area_level_1" disabled="true"></input></td>
-                  <td class="label">Zip code</td>
-                  <td class="wideField"><input class="field" id="postal_code"
-                        disabled="true"></input></td>
-                </tr>
-                <tr>
-                  <td class="label">Country</td>
-                  <td class="wideField" colspan="3"><input class="field"
-                        id="country" disabled="true"></input></td>
-                </tr>
-              </table>
-<!-- Replace the value of the key parameter with your own API key. -->
 
 <!--                 <%= f.input :address, label: "Where are you?", placeholder: "Your full address." %>
  -->                <%= f.button :submit %>
@@ -84,5 +47,12 @@
     </div>
   </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_SERVER_KEY"] %>&libraries=places&callback=initAutocomplete"
-        async defer></script>
+
+                <div id="map" style="width: 100%; height: 600px;"></div>
+
+    <%= javascript_pack_tag "request_new_map" %>
+
+<script>
+</script>
+
+

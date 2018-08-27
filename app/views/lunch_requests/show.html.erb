@@ -19,6 +19,13 @@
     </div>
   </div>
 </div>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
+
+<div id="map" style="width: 100%; height: 600px;" data-markers="<%= @markers.to_json %>"></div>
+<%= javascript_pack_tag "map" %>
+
+
+
 <% content_for :after_js do %>
   <script>
     console.log("my script runs");
@@ -30,7 +37,7 @@
         if ( myRequestId === data.lunch_date.request1_id || myRequestId === data.lunch_date.request2_id ) {
          console.log('concerned')
          window.location.replace("<%= lunch_dates_path %>/" + data.lunch_date.id);
-    
+
         } else {
          console.log('not concerned in this match')
         }

@@ -1,21 +1,21 @@
 class MakeMatchesJob < ApplicationJob
   queue_as :default
 
-  def time_match(pair)
-    t1 = pair[0].datetime.to_i
-    t2 = pair[1].datetime.to_i
-    (t1 - t2).abs <= ( 60 * 15 )
-  end
+  # def time_match(pair)
+  #   t1 = pair[0].datetime.to_i
+  #   t2 = pair[1].datetime.to_i
+  #   (t1 - t2).abs <= ( 60 * 15 )
+  # end
 
   def location_match(pair)
     pair[0].distance_from(pair[1]) <= 0.6
   end
 
-  def duration_match(pair)
-    (pair[0].suggested_duration == pair[1].suggested_duration - 30) ||
-    (pair[0].suggested_duration == pair[1].suggested_duration + 30) ||
-    (pair[0].suggested_duration == pair[1].suggested_duration)
-  end
+  # def duration_match(pair)
+  #   (pair[0].suggested_duration == pair[1].suggested_duration - 30) ||
+  #   (pair[0].suggested_duration == pair[1].suggested_duration + 30) ||
+  #   (pair[0].suggested_duration == pair[1].suggested_duration)
+  # end
 
   def type_match(pair)
     pair[0].lunch_type == pair[0].lunch_type
@@ -24,9 +24,9 @@ class MakeMatchesJob < ApplicationJob
   def test_for_match (pair)
     # p pair
 
-    time = time_match(pair)
+    # time = time_match(pair)
     location = location_match(pair)
-    duration = duration_match(pair)
+    # duration = duration_match(pair)
     type = type_match(pair)
     # p time, location, duration, type
     time && location && duration && type
@@ -70,15 +70,15 @@ class MakeMatchesJob < ApplicationJob
         request2: pair[1],
         restaurant: Restaurant.all.sample,
         begin: Time.at(( pair[0].datetime.to_i + pair[1].datetime.to_i ) / 2),
-          suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
-          lunch_type: pair[0].lunch_type
+            suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
+            lunch_type: pair[0].lunch_type
           )
-      if lunch.save
-        puts
-        puts
-        puts
-        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
-        p lunch
+          if lunch.save
+            puts
+            puts
+            puts
+            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
+            p lunch
             # # ActionCable.server.broadcast("incoming_requests", {
             # #   lunch_date: ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blah"
             # # })
@@ -87,7 +87,7 @@ class MakeMatchesJob < ApplicationJob
             # })
 
             ActionCable.server.broadcast( "incoming_requests" , {
-              lunch_date: lunch
+                                            lunch_date: lunch
             })
             puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sent action cable'
             pair[0].lunch_date = lunch
@@ -102,5 +102,5 @@ class MakeMatchesJob < ApplicationJob
 
 
         end
-      end
-    end
+        end
+        end

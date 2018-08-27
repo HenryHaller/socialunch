@@ -3,16 +3,17 @@
     width: 600px;
       /*margin: 50px auto;*/
   }
-   /* .container form {
-      margin-bottom: 15px;
+    .container form {
         background: #f7f7f7;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
         padding: 30px;
+        margin-top: 80px;
+        margin-bottom: 80px;
     }
     .container h2 {
         margin: 0 0 15px;
-        color: black;
-    }*/
+        color: #FD6A02;
+    }
     .form-inputs {
         min-height: 38px;
         border-radius: 2px;
@@ -26,9 +27,10 @@
   <div class="banner-content">
     <div class="container">
       <div class="row">
-        <div class="col-sm-10 col-sm-offset-2 text-center">
-          <h2 class="text-center">Edit Profile</h2>
+        <div class="col-sm-12">
+
           <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <h2 class="text-center">Edit Profile</h2>
             <%= f.error_notification %>
             <div class="form-inputs">
               <%= f.input :email, required: true, autofocus: true %>
@@ -55,10 +57,11 @@
             <div class="form-actions text-center">
               <%= f.button :submit, "Update", class: 'btn btn-info' %>
             </div>
-          <% end %>
-          <p class="text-center">Unhappy?</p>
+             <p class="text-center" style="color: black">Unhappy?</p>
           <p class="text-center"><%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>
           <%= link_to "Back", :back, class: 'btn btn-primary' %>
+          <% end %>
+
         </div>
       </div>
     </div>

@@ -8,6 +8,11 @@ if ("geolocation" in navigator) {
     const lat = position.coords.latitude;
     const lng = position.coords.longitude;
 
+    const latElement = document.querySelector('#lat');
+    const lngElement = document.querySelector('#lng');
+    latElement.value = lat;
+    lngElement.value = lng;
+
     const mapElement = document.getElementById('map');
     if (mapElement) { // don't try to build a map if there's no div#map to inject in
     const map = new GMaps({ el: '#map', lat: lat, lng: lng });

@@ -1,7 +1,3 @@
-require "open-uri"
-require 'json'
-
-PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
 
 class MakeMatchesJob < ApplicationJob
   queue_as :default
@@ -70,59 +66,44 @@ class MakeMatchesJob < ApplicationJob
     # puts request_pairs.count
     request_pairs.each do |pair|
 
-      #get a restaurant id
-      avg_lat = (pair[0].latitude + pair[1].latitude) / 2
-      avg_lng = (pair[0].longitude + pair[1].longitude) / 2
-      params = {
-        location: "#{avg_lat},#{avg_lng}",
-        radius: 700,
-        type: "restaurant",
-        maxprice: 2,
-        key: ENV["GOOGLE_API_SERVER_KEY"],
-      }
-      lookup_url = PLACES_API_BASE + URI.encode_www_form(params)
-      # puts lookup_url
-      data = JSON.parse(open(lookup_url).read)
-      results = data["results"]
-      gmaps_place_id = results.sample["place_id"]
       # puts "making lunch for #{pair}"
       lunch = LunchDate.new(
         request1: pair[0],
         request2: pair[1],
-        gmaps_place_id: gmaps_place_id
         # restaurant: Restaurant.all.sample,
         # begin: Time.at(( pair[0].datetime.to_i + pair[1].datetime.to_i ) / 2),
         # suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
         # lunch_type: pair[0].lunch_type
-          )
-          if lunch.save
-            puts
-            puts
-            puts
-            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
-            p lunch
-            # # ActionCable.server.broadcast("incoming_requests", {
-            # #   lunch_date: ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blah"
-            # # })
-            # ActionCable.server.broadcast( "incoming_requests" , {
-            #   lunch_date: "we have saved a lunch"
-            # })
+        )
+      next if lunch.set_place == nil
+      if lunch.save
+        puts
+        puts
+        puts
+        puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Lunch successfully saved"
+        p lunch
+        # # ActionCable.server.broadcast("incoming_requests", {
+        # #   lunch_date: ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> blah"
+        # # })
+        # ActionCable.server.broadcast( "incoming_requests" , {
+        #   lunch_date: "we have saved a lunch"
+        # })
 
-            ActionCable.server.broadcast( "incoming_requests" , {
-                                            lunch_date: lunch
-            })
-            puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sent action cable'
-            pair[0].lunch_date = lunch
-            pair[1].lunch_date = lunch
-            pair[0].save
-            pair[1].save
-            pair[0].deactivate
-            pair[1].deactivate
-          else
-            puts lunch.errors.messages if lunch.errors.any?
-          end
+        ActionCable.server.broadcast( "incoming_requests" , {
+          lunch_date: lunch
+        })
+        puts '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> sent action cable'
+        pair[0].lunch_date = lunch
+        pair[1].lunch_date = lunch
+        pair[0].save
+        pair[1].save
+        pair[0].deactivate
+        pair[1].deactivate
+      else
+        puts lunch.errors.messages if lunch.errors.any?
+      end
 
 
-        end
-        end
-        end
+    end
+  end
+end

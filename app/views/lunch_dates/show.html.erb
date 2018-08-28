@@ -59,16 +59,41 @@ data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.lo
 
 </div>
 
+
+
 <%= javascript_pack_tag "lunch_show_map" %>
-
-<ul id="instructions">
-</ul>
-
-
-
-<script type="text/javascript">
-
-
-
+<% content_for :after_js do %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="chat-header"><h4>#<%#= @lunch_date.name %></h4></div>
+      <div class="messages">
+        <% @lunch_date.messages.each do |message| %>
+        <%= render "messages/message", message: message, user_is_messages_author: message.user == current_user %>
+        <% end %>
+      </div>
+      <div id="create-message">
+        <%= simple_form_for [ @lunch_date, Message.new ], remote: true, html: {autocomplete: "off" } do |f| %>
+        <%= f.input :content, label: false %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :after_js do %>
+<script>
+  const messagesContainer = document.querySelector('.messages');
+  const input = document.querySelector('#message_content');
+  scrollLastMessageIntoView();
+  App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create({ channel: 'LunchDatesChannel', lunch_date_id: <%= @lunch_date.id %> }, {
+    received: (data) => {
+      if (data.current_user_id !== <%= current_user.id %>) {
+        messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
+        scrollLastMessageIntoView();
+      }
+    }
+  })
 </script>
+<% end %>
 
+  <% end %>

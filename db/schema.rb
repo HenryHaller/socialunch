@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_083024) do
+ActiveRecord::Schema.define(version: 2018_08_28_022423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "lunch_dates", force: :cascade do |t|
     t.bigint "request1_id"
@@ -46,6 +51,16 @@ ActiveRecord::Schema.define(version: 2018_08_27_083024) do
     t.string "address", default: "Please put in your full address here.", null: false
     t.index ["lunch_date_id"], name: "index_lunch_requests_on_lunch_date_id"
     t.index ["user_id"], name: "index_lunch_requests_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "chat_room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "restaurants", force: :cascade do |t|

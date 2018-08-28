@@ -60,15 +60,11 @@ data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.lo
 </div>
 
 <%= javascript_pack_tag "lunch_show_map" %>
-
-<ul id="instructions">
-</ul>
-
-
-
-<script type="text/javascript">
-
-
-
-</script>
-
+<% content_for :after_js do %>
+<script>
+  App['chat_room_<%= @chat_room.id %>'] = App.cable.subscriptions.create(
+    { channel: 'ChatRoomsChannel', chat_room_id: <%= @chat_room.id %> },
+    { received: (data) => console.log(data) }
+    );
+  </script>
+  <% end %>

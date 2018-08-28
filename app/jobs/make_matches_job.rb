@@ -75,7 +75,8 @@ class MakeMatchesJob < ApplicationJob
         # suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,
         # lunch_type: pair[0].lunch_type
         )
-      next if lunch.set_place == nil
+      lunch.set_place
+      next if lunch.gmaps_place_id == nil
       if lunch.save
         puts
         puts

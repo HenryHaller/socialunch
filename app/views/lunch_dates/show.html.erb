@@ -6,6 +6,8 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8">
         <div class="match_content">
+          <%= @lunch_date.vicinity %>
+          <%= @lunch_date.venue_name %>
           <% if current_user == @lunch_date.request1.user %>
           <% primary_user = @lunch_date.request1.user %>
           <% secondary_user = @lunch_date.request2.user %>

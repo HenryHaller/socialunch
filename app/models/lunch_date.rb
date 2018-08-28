@@ -40,5 +40,7 @@ class LunchDate < ApplicationRecord
     # p result["geometry"]
     self.latitude = result["geometry"]["location"]["lat"]
     self.longitude = result["geometry"]["location"]["lng"]
+    self.venue_name = result["name"]
+    self.vicinity = result["vicinity"]
   end
 end

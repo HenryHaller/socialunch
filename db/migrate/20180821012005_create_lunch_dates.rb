@@ -9,6 +9,8 @@ class CreateLunchDates < ActiveRecord::Migration[5.2]
       t.string :lunch_type
       t.string :vicinity
       t.string :venue_name
+      t.string :photo_url
+
       t.timestamps
     end
   end

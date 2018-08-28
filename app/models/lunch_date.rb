@@ -18,6 +18,23 @@ class LunchDate < ApplicationRecord
     self.request1.id != self.request2.id
   end
 
+  # def set_photo(photoreference)
+  #   params = {
+  #     maxwidth: 400,
+  #     photoreference: photoreference,
+  #     key: ENV["GOOGLE_API_SERVER_KEY"]
+  #   }
+  #   lookup_url = PHOTO_REFERENCE_API_BASE + URI.encode_www_form(params)
+  #   puts "ATTEMPTING URL LOOK UP!!!"
+  #   puts lookup_url
+  #   data = open(lookup_url).read
+  #   # puts "<<<<<<<<<<<<<<"
+  #   # # puts data
+  #   # puts "<<<<<<<<<<<<<<"
+
+  # end
+
+
   def set_place
     avg_lat = (self.request1.latitude + self.request2.latitude) / 2
     avg_lng = (self.request1.longitude + self.request2.longitude) / 2
@@ -34,7 +51,9 @@ class LunchDate < ApplicationRecord
     data = JSON.parse(open(lookup_url).read)
     results = data["results"]
     result = results.sample
+    top_photo =  result["photos"][0]
     gmaps_place_id = result["place_id"]
+    # set_photo(top_photo["photo_reference"])
     # p result
     self.gmaps_place_id = gmaps_place_id
     # p result["geometry"]
@@ -42,5 +61,12 @@ class LunchDate < ApplicationRecord
     self.longitude = result["geometry"]["location"]["lng"]
     self.venue_name = result["name"]
     self.vicinity = result["vicinity"]
+
+
+    client = GooglePlaces::Client.new(ENV["GOOGLE_API_SERVER_KEY"])
+    spot = client.spot(gmaps_place_id)
+    self.photo_url = spot.photos[0].fetch_url(800)
+
+    # self.photo_reference = top_photo["photo_reference"]
   end
 end

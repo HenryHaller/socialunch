@@ -24,6 +24,7 @@ class LunchDate < ApplicationRecord
     radius: 700,
     type: "restaurant",
     maxprice: 2,
+    opennow: true,
     key: ENV["GOOGLE_API_SERVER_KEY"],
     }
     lookup_url = PLACES_API_BASE + URI.encode_www_form(params)

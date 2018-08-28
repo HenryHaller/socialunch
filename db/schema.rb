@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_022411) do
     t.datetime "begin"
     t.integer "suggested_duration"
     t.string "lunch_type"
+    t.string "vicinity"
+    t.string "venue_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "gmaps_place_id"

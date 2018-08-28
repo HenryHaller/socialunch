@@ -7,7 +7,8 @@ class CreateLunchDates < ActiveRecord::Migration[5.2]
       t.datetime :begin
       t.integer :suggested_duration
       t.string :lunch_type
-
+      t.string :vicinity
+      t.string :venue_name
       t.timestamps
     end
   end

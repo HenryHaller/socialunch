@@ -27,10 +27,16 @@ class LunchDate < ApplicationRecord
     key: ENV["GOOGLE_API_SERVER_KEY"],
     }
     lookup_url = PLACES_API_BASE + URI.encode_www_form(params)
+    # p lookup_url
     # puts lookup_url
     data = JSON.parse(open(lookup_url).read)
     results = data["results"]
-    gmaps_place_id = results.sample["place_id"]
+    result = results.sample
+    gmaps_place_id = result["place_id"]
+    # p result
     self.gmaps_place_id = gmaps_place_id
+    # p result["geometry"]
+    self.latitude = result["geometry"]["location"]["lat"]
+    self.longitude = result["geometry"]["location"]["lng"]
   end
 end

@@ -1,14 +1,4 @@
 // Specific CSS for your home-page
-
-.quick_links {
-  text-align: center;
-  font-size: 34px;
-  color: #FD6A02;
-  margin-left: 10px;
-  margin-right: 10px;
-  justify-content: space-between;
-}
-
 .match_title h2{
   font-family: $headers-font;
   font-size: 40px;
@@ -64,4 +54,40 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .lunch_show_page {
   height: 300px;
   width: auto;
+  
+.testimonial-block {
+  border-top: 1px solid gray;
+  padding: 10px;
+  margin: 10px;
+
+}
+.quote {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 30px;
+  padding: 20px 0 25px;
+  color: gray;
+
+}
+
+.quote_title {
+  font-size: 32px;
+  color: #FD6A02;
+
+}
+.attribution {
+  text-align: right;
+  padding: 0 0 20px;
+}
+.testimonial_name {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
+  color: gray;
+}
+
+.testimonial_title {
+  color: gray;
+
 }

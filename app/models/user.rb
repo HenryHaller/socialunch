@@ -9,7 +9,8 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   validates :first_name, :last_name, :bio, presence: true
-  has_many :lunch_requests
+  has_many :lunch_requests, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   def other_active_request
     # LunchRequest.where(user: self, active: true).count == 0

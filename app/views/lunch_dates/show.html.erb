@@ -8,6 +8,7 @@
         <div class="match_content">
           <%= @lunch_date.vicinity %>
           <%= @lunch_date.venue_name %>
+          <%= @lunch_date.photo_url %>
           <% if current_user == @lunch_date.request1.user %>
           <% primary_user = @lunch_date.request1.user %>
           <% secondary_user = @lunch_date.request2.user %>
@@ -129,7 +130,13 @@
         }
       }
     })
+
+
+
+
   </script>
+
+
   <% end %>
   <% end %>
 

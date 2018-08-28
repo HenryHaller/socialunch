@@ -14,7 +14,11 @@
         <% end %>
         <div class="row text-center">
           <div class="matched_them">
-            <%= cl_image_tag secondary_user.photo %>
+            <% if secondary_user.photo.url %>
+              <%= cl_image_tag secondary_user.photo, :class => "lunch_show_page" %>
+            <% else %>
+              <%= image_tag "eat.png" %>
+            <% end %>
             <h3><br>
               Your Buddy:<br>
             </h3>

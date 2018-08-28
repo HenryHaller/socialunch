@@ -1,35 +1,29 @@
-
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
       <div class="match_title">
-        <h2 class="text-center">You matched with a lunch buddy!</h2>
+        <h3 class="text-center">Who you will share your SociaLunch with</h3>
       </div>
       <div class="match_content">
-        <div class="text-center">
-          <p>You will have a <%= @lunch_date.lunch_type %> lunch</p>
-          for <%= @lunch_date.suggested_duration %> minutes</p>
-        </div>
-        <div>
-          <% if current_user == @lunch_date.request1.user %>
+        <% if current_user == @lunch_date.request1.user %>
           <% primary_user = @lunch_date.request1.user %>
           <% secondary_user = @lunch_date.request2.user %>
-          <% else %>
+        <% else %>
           <% primary_user = @lunch_date.request2.user %>
           <% secondary_user = @lunch_date.request1.user %>
-          <% end %>
-          <div class="row text-center">
-            <!-- <div class="matched_you">
-              You:<%= "#{primary_user.first_name.capitalize} #{primary_user.last_name.capitalize}" %><br>
-              Your Bio:<%= primary_user.bio %>
-            </div> -->
-            <div class="matched_them">
-              <h3><br>Your Buddy:<br></h3>
-              <p><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %><br></p>
-              <h3>Bio:</h3>
-              <p><%= secondary_user.bio %><br><br></p>
-            </div>
+        <% end %>
+        <div class="row text-center">
+          <div class="matched_them">
+            <%= cl_image_tag secondary_user.photo %>
+            <h3><br>
+              Your Buddy:<br>
+            </h3>
+            <p><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %><br>
+            </p>
+            <h3>Bio:</h3>
+            <p><%= secondary_user.bio %><br>
+              <br>
+            </p>
           </div>
         </div>
         <div class="matched_address">
@@ -42,9 +36,7 @@
   </div>
 </div>
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
-
 <ul id="directions"></ul>
-
 <%#= @lunch_date.gmaps_place_id %>
 <div id="map" style="width: 80%; height: 500px;"
 
@@ -56,19 +48,5 @@ data-origin='{"lat": <%= @lunch_date.request2.latitude %>, "lng": <%= @lunch_dat
 <% end %>
 data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.longitude %> }'
 >
-
 </div>
-
 <%= javascript_pack_tag "lunch_show_map" %>
-
-<ul id="instructions">
-</ul>
-
-
-
-<script type="text/javascript">
-
-
-
-</script>
-

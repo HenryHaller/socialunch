@@ -7,6 +7,8 @@ PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?
 class LunchDate < ApplicationRecord
   belongs_to :request1, :class_name => 'LunchRequest'
   belongs_to :request2, :class_name => 'LunchRequest'
+  has_many :messages, dependent: :destroy
+
   # belongs_to :restaurant
 
   validates :request1, :request2, presence: true

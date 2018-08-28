@@ -17,12 +17,13 @@
 </div>
 <% content_for :after_js do %>
 <script>
-  const messagesContainer = document.querySelector('.messages');
-  const input = document.querySelector('#message_content');
+  // const messagesContainer = document.querySelector('.messages');
+  // const input = document.querySelector('#message_content');
   scrollLastMessageIntoView();
-  App['chat_room_<%= @chat_room.id %>'] = App.cable.subscriptions.create({ channel: 'ChatRoomsChannel', chat_room_id: <%= @chat_room.id %> }, {
+  App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create({ channel: 'LunchDatesChannel', lunch_date_id: <%= @lunch_date.id %> }, {
     received: (data) => {
       if (data.current_user_id !== <%= current_user.id %>) {
+        const messagesContainer = document.querySelector('.messages');
         messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
         scrollLastMessageIntoView();
       }

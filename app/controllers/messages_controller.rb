@@ -2,17 +2,17 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
     authorize @message
-    @chat_room = ChatRoom.find(params[:chat_room_id])
-    @message.chat_room = @chat_room
+    @lunch_date = LunchDate.find(params[:lunch_date_id])
+    @message.lunch_date = @lunch_date
     @message.user = current_user
     if @message.save
       respond_to do |format|
-        format.html { redirect_to chat_room_path(@chat_room) }
+        format.html { redirect_to lunch_date_path(@lunch_date) }
         format.js
       end
     else
       respond_to do |format|
-        format.html { render "chat_rooms/show" }
+        format.html { render "lunch_dates/show" }
         format.js
       end
     end

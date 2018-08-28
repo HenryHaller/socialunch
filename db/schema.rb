@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 2018_08_28_022423) do
   create_table "messages", force: :cascade do |t|
     t.string "content"
     t.bigint "user_id"
-    t.bigint "chat_room_id"
+    t.bigint "lunch_date_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["lunch_date_id"], name: "index_messages_on_lunch_date_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 

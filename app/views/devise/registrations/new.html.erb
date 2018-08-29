@@ -1,5 +1,4 @@
 <style type="text/css">
-
   .container form {
     background: #f7f7f7;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -7,6 +6,7 @@
     margin-top: 50px;
     text-align: center;
     padding: 10px;
+    border-radius: 2px;
   }
   .container h2 {
     margin: 0 0 15px;
@@ -26,9 +26,7 @@
   .signup {
     color: #FD6A02;
   }
-
 </style>
-
 <% if resource.errors.any? %>
   <div class="errors-container">
     <ul>
@@ -49,30 +47,30 @@
               <div class="signup">
                 <h2>Sign up</h2>
               </div>
-                <%= f.input :first_name,
+              <%= f.input :first_name,
               required: true,
               input_html: { autocomplete: "first_name" }%>
-                <%= f.input :last_name,
+              <%= f.input :last_name,
               required: true,
               input_html: { autocomplete: "last_name" } %>
-                <%= f.input :email,
+              <%= f.input :email,
               required: true,
               autofocus: true ,
               input_html: { autocomplete: "email" }%>
-                <%= f.input :bio,
+              <%= f.input :bio,
               as: :text,
               required: true,
               label: "Please tell us a little about yourself."
               %>
-                <%= f.input :password,
+              <%= f.input :password,
               required: true,
               hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
               input_html: { autocomplete: "new-password" } %>
-                <%= f.input :password_confirmation,
+              <%= f.input :password_confirmation,
               required: true,
               input_html: { autocomplete: "new-password" } %>
-                <%= f.input :photo %>
-                <%= f.input :photo_cache, as: :hidden %>
+              <%= f.input :photo %>
+              <%= f.input :photo_cache, as: :hidden %>
             </div>
             <div class="form-actions">
               <%= f.button :submit, "Sign up" %>

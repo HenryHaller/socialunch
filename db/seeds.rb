@@ -19,7 +19,7 @@ Tsuzumi = {
 
 Ableen = {
   email: "ableen@gmail.com",
-  first_name: A"bleen",
+  first_name: "Ableen",
   last_name: "Tai",
   bio: 'I am a student at Le Wagon. ',
   password: "123456",

@@ -1,17 +1,14 @@
+<div class="map-block">
 
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
 
-    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
-
-    <%#= @lunch_date.gmaps_place_id %>
-    <div id="map" style="width: 100%; height: 500px;"
-
-
-    <% if current_user == @lunch_date.request1.user %>
-    data-origin='{"lat": <%= @lunch_date.request1.latitude %>, "lng": <%= @lunch_date.request1.longitude %>}'
-    <% else %>
-    data-origin='{"lat": <%= @lunch_date.request2.latitude %>, "lng": <%= @lunch_date.request2.longitude %>}'
-    <% end %>
-    data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.longitude %> }'>
-
-  <h4 class="map_directions">Directions</h4>
-  <ul id="directions"></ul>
+  <%#= @lunch_date.gmaps_place_id %>
+  <div id="map" style="width: 100%; height: 500px;"
+  <% if current_user == @lunch_date.request1.user %>
+  data-origin='{"lat": <%= @lunch_date.request1.latitude %>, "lng": <%= @lunch_date.request1.longitude %>}'
+  <% else %>
+  data-origin='{"lat": <%= @lunch_date.request2.latitude %>, "lng": <%= @lunch_date.request2.longitude %>}'
+  <% end %>
+  data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.longitude %> }'>
+  </div>
+</div>

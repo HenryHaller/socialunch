@@ -6,62 +6,42 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-LunchDate.delete_all
 User.delete_all
-Restaurant.delete_all
-LunchRequest.delete_all
+
+Tsuzumi = {
+  email: tsuzumi@gmail.com,
+  first_name: Tsuzumi,
+  last_name: Sato,
+  bio: 'I am a student at Le Wagon. ',
+  password: "123456",
+  birthday: (Time.now - (18..65).to_a.sample.years)
+}
+
+Ableen = {
+  email: ableen@gmail.com,
+  first_name: Ableen,
+  last_name: Tai,
+  bio: 'I am a student at Le Wagon. ',
+  password: "123456",
+  birthday: (Time.now - (18..65).to_a.sample.years)
+}
+
+Henry = {
+  email: henry@gmail.com,
+  first_name: Henry,
+  last_name: Haller,
+  bio: 'I am a student at Le Wagon. ',
+  password: "123456",
+  birthday: (Time.now - (18..65).to_a.sample.years)
+}
+
+tsuzumi = User.new(Tsuzumi)
+ableen = User.new(Ableen)
+henry = User.new(Henry)
+
+puts tsuzumi.errors.messages unless tsuzumi.save
+puts ableen.errors.messages unless ableen.save
+puts henry.errors.messages unless henry.save
 
 
-puts "making restaurants"
-6.times do |variable|
-  Restaurant.create(address: Faker::Address.full_address,
-                    latitude: Faker::Address.latitude, longitude: Faker::Address.longitude,
-                    name: Faker::Pokemon.name, description: Faker::TheITCrowd.quote,
-                    cuisine: Faker::Superhero.power, phone_number: Faker::PhoneNumber.cell_phone)
-end
-puts "made #{Restaurant.count} restaurants"
-
-puts "making users "
-6.times do |variable|
-  u = User.new(
-    email: "test#{variable}@gmail.com",
-    password: "123456",
-    first_name: Faker::Dog.name,
-    last_name: Faker::Cat.name,
-    birthday: (Time.now - (18..65).to_a.sample.years),
-  bio: Faker::TheFreshPrinceOfBelAir.quote)
-  u.save
-  puts u.errors.messages if u.errors.any?
-
-end
-puts "made #{User.count} users"
-
-
-puts "making lunch requests"
-User.all.each do |user|
-  l = LunchRequest.create(
-    address: Faker::Address.full_address,
-    datetime: Time.now,
-    suggested_duration: [30, 60, 90, 120].sample,
-    lunch_type: ["casual", "professional"].sample,
-    user: user
-  )
-  l.save
-  puts l.errors.messages if l.errors.any?
-
-end
-puts "made #{LunchRequest.count} lunch requests"
-
-puts "making lunch dates"
-
-MakeMatchesJob.perform_now
-# 6.times do |variable|
-#   LunchDate.create(user: User.all.sample, second_user: User.all.sample, restaurant: Restaurant.all.sample,
-#     begin: Time.now, suggested_duration: 60, lunch_type: ["casual", "professional"].sample)
-# end
-puts "made #{LunchDate.count} lunch dates"
-
-"Made #{Restaurant.count} restaurants"
 "Made #{User.count} users"
-"Made #{LunchRequest.count} lunch requests"
-# "Made #{LunchDate.count} lunch dates"

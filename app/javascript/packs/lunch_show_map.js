@@ -120,7 +120,7 @@ const styles = [ {
         "elementType": "all",
         "stylers": [
             {
-                "color": "#f2f2f2"
+                "color": "#675A4B"
             }
         ]
     },

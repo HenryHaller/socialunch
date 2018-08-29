@@ -9,6 +9,7 @@
   <% else %>
   data-origin='{"lat": <%= @lunch_date.request2.latitude %>, "lng": <%= @lunch_date.request2.longitude %>}'
   <% end %>
-  data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.longitude %> }'>
+  data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.longitude %>, "icon": "<%= image_url("logo_32.png") %>" }'>
   </div>
 </div>
+

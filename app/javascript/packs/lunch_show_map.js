@@ -327,7 +327,9 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
     mapTypeId: 'map_style'
   });
   map.setStyle('map_style');
-
+  const lineSymbol = {
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+  };
 
   console.log(origin, destination)
   map.travelRoute({
@@ -343,9 +345,14 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
       directions.insertAdjacentHTML("beforeend", `<li><span class="step">${e.step_number+1}.</span><span class="distance">${e.distance.text}</span> ${e.instructions} </li>`)
       map.drawPolyline({
         path: e.path,
-        strokeColor: '#131540',
-        strokeOpacity: 0.6,
+        strokeColor: '#FD6A02',
+        strokeOpacity: 0.8,
         strokeWeight: 6,
+        icons: [{
+          icon: lineSymbol,
+          offset: '100%'
+        }],
+
       });
     }
   });

@@ -1,3 +1,28 @@
+.chat {
+  width: 350px;
+  height: 80vh;
+  max-height: 500px;
+  z-index: 2;
+  overflow: hidden;
+  background: rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.chat-header {
+  flex: 0 1 45px;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 10px 10px 10px 50px;
+  border-bottom: 1px solid gray;
+
+}
+
 .messages {
   font-size: 14px;
   color: #868686;
@@ -8,24 +33,37 @@
   border-bottom-width: 0;
   max-height: calc(100vh - 70px - 45px - 61px - 30px);
   overflow: scroll;
+
+}
+
+.message-content {
+  border-radius: 3px;
+  margin: 0 10px;
+  padding:  10px 10px 10px 10px;
 }
 
 .message {
+  height: 8;
   display: flex;
-  margin-bottom: 10px;
+  border-radius: 3px;
+  margin: 10px;
+  padding: 0px 10px 0px 10px;
+  background-color: #FEBB8C;
+  color: #ffffff;
   &.right {
+    border-radius: 3px;
+  margin: 10px;
+  padding: 0px 10px 0px 10px;
     flex-direction: row-reverse;
-    .message-content {
-      background-color: #F2F9FC;
-    }
+    background-color: #FD8530;
+    color: #ffffff;
   }
 }
-.message-content {
-  background-color: #F7F7F7;
-  border-radius: 3px;
-  margin: 0 10px;
-  padding: 11px 10px 8px 10px;
-}
+
+
+
+
+
 .avatar {
   width: 42px;
   height: 42px;
@@ -33,13 +71,47 @@
 }
 
 #create-message {
+  border: 1px solid gray;
+  width: 100%;
+  background: #fd6a02;
   padding: 10px;
-  background-color: #ffffff;
-  margin-bottom: 20px;
-  border: 1px solid #ececec;
+  position: relative;
+
+  }
+
+.message-input {
+  background: none;
+    border: none;
+    outline: none!important;
+    resize: none;
+    color: #ffffff;
+    font-size: 11px;
+    height: 17px;
+    margin: 0;
+    padding-right: 20px;
+    width: 265px;
 }
-.message_content {
-  margin-bottom: 0;
+
+.message-submit {
+  position: absolute;
+    z-index: 1;
+    top: 9px;
+    right: 10px;
+    background-color: #fd6a02;
+    color: #ffffff;
+    border: none;
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 6px 10px;
+    border-radius: 10px;
+    outline: none!important;
+    transition: background .2s ease;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+.message-submit:hover {
+  opacity: 0.6;
 }
 input.form-control {
   border: 1px solid #ECECEC;
@@ -48,16 +120,10 @@ input.form-control {
   color: #868686;
   &:focus {
     outline: none;
-    border: 1px solid blue;
+    border: 1px solid gray;
     box-shadow: none;
   }
 }
-.chat-header {
-  background-color: #4F2F4C;
-  color: white;
-  padding: 10px 20px;
-  margin-top: 10px;
-  h4 {
-    margin: 0;
-  }
-}
+
+
+

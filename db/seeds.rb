@@ -9,27 +9,27 @@
 User.delete_all
 
 Tsuzumi = {
-  email: tsuzumi@gmail.com,
-  first_name: Tsuzumi,
-  last_name: Sato,
+  email: "tsuzumi@gmail.com",
+  first_name: "Tsuzumi",
+  last_name: "Sato",
   bio: 'I am a student at Le Wagon.',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years)
 }
 
 Ableen = {
-  email: ableen@gmail.com,
-  first_name: Ableen,
-  last_name: Tai,
+  email: "ableen@gmail.com",
+  first_name: A"bleen",
+  last_name: "Tai",
   bio: 'I am a student at Le Wagon. ',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years)
 }
 
 Henry = {
-  email: henry@gmail.com,
-  first_name: Henry,
-  last_name: Haller,
+  email: "henry@gmail.com",
+  first_name: "Henry",
+  last_name: "Haller",
   bio: 'I am a student at Le Wagon. ',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years)

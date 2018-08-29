@@ -1,3 +1,12 @@
+<% if current_user == @lunch_date.request1.user %>
+  <% primary_user = @lunch_date.request1.user %>
+  <% secondary_user = @lunch_date.request2.user %>
+<% else %>
+  <% primary_user = @lunch_date.request2.user %>
+  <% secondary_user = @lunch_date.request1.user %>
+<% end %>
+
+
 <div class="container">
   <div class="match_title">
     <h3 class="text-center">Who you will share your SociaLunch with</h3>
@@ -6,91 +15,32 @@
     <div class="row">
       <div class="col-xs-12 col-sm-8">
         <div class="match_content">
-          <%= @lunch_date.vicinity %>
-          <%= @lunch_date.venue_name %>
-          <% @lunch_date.photos.each do |photo| %>
-            <%= photo.photo_url %>
-            <%= photo.html_attribution %>
-          <% end %>
-          <% if current_user == @lunch_date.request1.user %>
-          <% primary_user = @lunch_date.request1.user %>
-          <% secondary_user = @lunch_date.request2.user %>
-          <% else %>
-          <% primary_user = @lunch_date.request2.user %>
-          <% secondary_user = @lunch_date.request1.user %>
-          <% end %>
-          <div class="text-center">
-            <div class="matched_them">
-              <% if secondary_user.photo.url %>
-              <%= cl_image_tag secondary_user.photo, :class => "lunch_show_page" %>
-              <% else %>
-              <%= image_tag("eat.png", :class => "lunch_show_page") %>
-              <% end %>
-              <h3><br>
-                Your Buddy:<br>
-              </h3>
-              <p><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %><br>
-              </p>
-              <h3>Bio:</h3>
-              <p><%= secondary_user.bio %><br>
-                <br>
-              </p>
-            </div>
-          </div>
-          <div class="matched_address">
-            <div class=text-center>
-              <h3>Restaurant Address:</h3>
-              <p><%= "#{secondary_user.vicinity}" %></p>
-            </div>
-          </div>
+          <%= render "match_content", primary_user: primary_user, secondary_user: secondary_user %>
         </div>
       </div>
       <div class="col-xs-12 col-sm-4">
         <div class="chat-block">
-          <% content_for :after_js do %>
-          <div class="chat-header">
-            <h4>Chat with <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></h4>
-          </div>
-          <div class="messages">
-            <% @lunch_date.messages.each do |message| %>
-            <%= render "messages/message", message: message, user_is_messages_author: message.user == current_user %>
-            <% end %>
-          </div>
-          <div id="create-message">
-            <%= simple_form_for [ @lunch_date, Message.new ], remote: true, html: {autocomplete: "off" } do |f| %>
-            <%= f.input :content, label: false %>
-            <% end %>
-          </div>
+          <%= render "chat", primary_user: primary_user, secondary_user: secondary_user %>
         </div>
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-xs-12 col-sm-8">
       <div class="map-block">
-        <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
-
-        <%#= @lunch_date.gmaps_place_id %>
-        <div id="map" style="width: 100%; height: 500px;"
-
-
-        <% if current_user == @lunch_date.request1.user %>
-        data-origin='{"lat": <%= @lunch_date.request1.latitude %>, "lng": <%= @lunch_date.request1.longitude %>}'
-        <% else %>
-        data-origin='{"lat": <%= @lunch_date.request2.latitude %>, "lng": <%= @lunch_date.request2.longitude %>}'
-        <% end %>
-        data-destination='{"lat": <%= @lunch_date.latitude %>, "lng": <%= @lunch_date.longitude %> }'
-        >
+        <%= render "map", primary_user: primary_user %>
       </div>
-      <%= javascript_pack_tag "lunch_show_map" %>
     </div>
   </div>
+
   <div class="col-xs-12 col-sm-4">
     <h4 class="map_directions">Directions</h4>
     <ul id="directions"></ul>
   </div>
+
 </div>
-</div>
+<%= javascript_pack_tag "lunch_show_map" %>
 <% content_for :after_js do %>
 <script>
   // var messagesContainer = document.querySelector('.messages');
@@ -121,26 +71,4 @@
 
 
 
-  <% content_for :after_js do %>
-  <script>
-    const messagesContainer = document.querySelector('.messages');
-    const input = document.querySelector('#message_content');
-    scrollLastMessageIntoView();
-    App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create({ channel: 'LunchDatesChannel', lunch_date_id: <%= @lunch_date.id %> }, {
-      received: (data) => {
-        if (data.current_user_id !== <%= current_user.id %>) {
-          messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
-          scrollLastMessageIntoView();
-        }
-      }
-    })
-
-
-
-
-  </script>
-
-
-  <% end %>
-  <% end %>
 

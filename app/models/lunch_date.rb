@@ -40,11 +40,11 @@ class LunchDate < ApplicationRecord
     avg_lat = (self.request1.latitude + self.request2.latitude) / 2
     avg_lng = (self.request1.longitude + self.request2.longitude) / 2
     params = {
-    location: "#{avg_lat},#{avg_lng}",
-    radius: 700,
-    type: "restaurant",
-    maxprice: 2,
-    key: ENV["GOOGLE_API_SERVER_KEY"],
+      location: "#{avg_lat},#{avg_lng}",
+      radius: 700,
+      type: "restaurant",
+      maxprice: 2,
+      key: ENV["GOOGLE_API_SERVER_KEY"],
     }
     lookup_url = PLACES_API_BASE + URI.encode_www_form(params)
     # p lookup_url
@@ -75,10 +75,10 @@ class LunchDate < ApplicationRecord
     spot.photos.each do |photo|
       photo = Photo.new(
         photo_reference: photo.photo_reference,
-        photo_url: photo.fetch_url(400),
+        photo_url: photo.fetch_url(200),
         html_attribution: photo.html_attributions[0],
         lunch_date: self
-        )
+      )
       puts photo.errors.messages unless photo.save
     end
 

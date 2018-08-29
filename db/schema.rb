@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_022411) do
+ActiveRecord::Schema.define(version: 2018_08_29_004459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2018_08_28_022411) do
     t.datetime "updated_at", null: false
     t.index ["lunch_date_id"], name: "index_messages_on_lunch_date_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "photo_reference"
+    t.string "photo_url"
+    t.bigint "lunch_date_id"
+    t.string "html_attribution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lunch_date_id"], name: "index_photos_on_lunch_date_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -118,4 +128,5 @@ ActiveRecord::Schema.define(version: 2018_08_28_022411) do
   end
 
   add_foreign_key "lunch_dates", "restaurants"
+  add_foreign_key "photos", "lunch_dates"
 end

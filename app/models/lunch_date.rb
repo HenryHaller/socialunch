@@ -8,6 +8,7 @@ class LunchDate < ApplicationRecord
   belongs_to :request1, :class_name => 'LunchRequest'
   belongs_to :request2, :class_name => 'LunchRequest'
   has_many :messages, dependent: :destroy
+  has_many :photos, dependent: :destroy
 
   # belongs_to :restaurant
 
@@ -51,21 +52,41 @@ class LunchDate < ApplicationRecord
     data = JSON.parse(open(lookup_url).read)
     results = data["results"]
     result = results.sample
-    top_photo =  result["photos"][0]
+    puts "initializing the client"
+    client = GooglePlaces::Client.new(ENV["GOOGLE_API_SERVER_KEY"])
+
     gmaps_place_id = result["place_id"]
+    self.gmaps_place_id = gmaps_place_id
+    spot = client.spot(gmaps_place_id)
+    # top_photo =  result["photos"][0]
     # set_photo(top_photo["photo_reference"])
     # p result
-    self.gmaps_place_id = gmaps_place_id
     # p result["geometry"]
-    self.latitude = result["geometry"]["location"]["lat"]
-    self.longitude = result["geometry"]["location"]["lng"]
-    self.venue_name = result["name"]
-    self.vicinity = result["vicinity"]
+    # self.latitude = result["geometry"]["location"]["lat"]
+    # self.longitude = result["geometry"]["location"]["lng"]
+    # self.venue_name = result["name"]
+    # self.vicinity = result["vicinity"]
+    # pp spot
+    self.latitude = spot.lat
+    self.longitude = spot.lng
+    self.venue_name = spot.name
+    self.vicinity = spot.vicinity
+    puts "adding photos"
+    spot.photos.each do |photo|
+      p photo
+      photo = Photo.new(
+        photo_reference: photo.photo_reference,
+        photo_url: photo.fetch_url(400),
+        html_attribution: photo.html_attributions[0],
+        lunch_date: self
+        )
+      puts photo.errors.messages unless photo.save
+    end
 
+    # p results.photos
 
-    client = GooglePlaces::Client.new(ENV["GOOGLE_API_SERVER_KEY"])
-    spot = client.spot(gmaps_place_id)
-    self.photo_url = spot.photos[0].fetch_url(800)
+    # spot = client.spot(gmaps_place_id)
+    # self.photo_url = spot.photos[0].fetch_url(800)
 
     # self.photo_reference = top_photo["photo_reference"]
   end

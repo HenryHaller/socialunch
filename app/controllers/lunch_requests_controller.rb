@@ -32,7 +32,7 @@ class LunchRequestsController < ApplicationController
 
   def show
     @lunch_request = LunchRequest.find(params[:id])
-    @markers = [{lat: @lunch_request.latitude, lng: @lunch_request.longitude}]
+    @location = {lat: @lunch_request.latitude, lng: @lunch_request.longitude}
     authorize @lunch_request
   end
 

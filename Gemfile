@@ -26,6 +26,8 @@ gem 'acts-as-taggable-on', '~> 6.0'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
 
+gem 'google_places'
+
 
 # gem 'whenever', require: false
 

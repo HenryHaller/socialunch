@@ -336,6 +336,7 @@ if ("geolocation" in navigator) {
       mapTypeId: 'map_style'
     });
     map.setStyle('map_style');
+    map.setZoom(17);
     // if (markers.length === 0) {
     //   map.setZoom(2);
     // } else if (markers.length === 1) {

@@ -1,17 +1,14 @@
 <% if current_user == @lunch_date.request1.user %>
-<% primary_user = @lunch_date.request1.user %>
-<% secondary_user = @lunch_date.request2.user %>
+  <% primary_user = @lunch_date.request1.user %>
+  <% secondary_user = @lunch_date.request2.user %>
 <% else %>
-<% primary_user = @lunch_date.request2.user %>
-<% secondary_user = @lunch_date.request1.user %>
+  <% primary_user = @lunch_date.request2.user %>
+  <% secondary_user = @lunch_date.request1.user %>
 <% end %>
-
-
 <div class="container">
   <div class="match_title">
-    <h3 class="text-center">Who you will share your SociaLunch with</h3>
+    <h3 class="text-center">A Few Details...</h3>
   </div>
-
   <div class="buddy-chat">
     <div class="row">
       <div class="col-xs-12 col-sm-8">
@@ -19,7 +16,6 @@
           <%= render "match_content", primary_user: primary_user, secondary_user: secondary_user %>
         </div>
       </div>
-
       <div class="col-xs-12 col-sm-4">
         <div class="chat-block">
           <%= render "chat", primary_user: primary_user, secondary_user: secondary_user %>
@@ -27,50 +23,42 @@
       </div>
     </div>
   </div>
-
   <div class="map-section">
     <div class="row">
       <div class="col-xs-12 col-sm-8">
-          <%= render "map_block" %>
+        <%= render "map_block" %>
       </div>
-
       <div class="col-xs-12 col-sm-4">
         <%= render "map_directions" %>
       </div>
     </div>
   </div>
 </div>
-
-
 <%= javascript_pack_tag "lunch_show_map" %>
 <% content_for :after_js do %>
-<script>
-  // var messagesContainer = document.querySelector('.messages');
-  // const input = document.querySelector('#message_content');
-  function scrollLastMessageIntoView() {
-    const messages = document.querySelectorAll('.message');
-    const lastMessage = messages[messages.length - 1];
-
-    if (lastMessage !== undefined) {
-      lastMessage.scrollIntoView();
-    }
-  }
-
-  scrollLastMessageIntoView();
-  App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create(
-    { channel: 'ChatRoomsChannel', lunch_date_id: <%= @lunch_date.id %> }, {
-      received: (data) => {
-        console.log(data)
-
-        if (data.current_user_id !== <%= current_user.id %>) {
-          document.querySelector('.messages').insertAdjacentHTML('beforeend', data.message_partial);
-          scrollLastMessageIntoView();
-        }
+  <script>
+    // var messagesContainer = document.querySelector('.messages');
+    // const input = document.querySelector('#message_content');
+    function scrollLastMessageIntoView() {
+      const messages = document.querySelectorAll('.message');
+      const lastMessage = messages[messages.length - 1];
+    
+      if (lastMessage !== undefined) {
+        lastMessage.scrollIntoView();
       }
-    })
+    }
+    
+    scrollLastMessageIntoView();
+    App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create(
+      { channel: 'ChatRoomsChannel', lunch_date_id: <%= @lunch_date.id %> }, {
+        received: (data) => {
+          console.log(data)
+    
+          if (data.current_user_id !== <%= current_user.id %>) {
+            document.querySelector('.messages').insertAdjacentHTML('beforeend', data.message_partial);
+            scrollLastMessageIntoView();
+          }
+        }
+      })
   </script>
-  <% end %>
-
-
-
-
+<% end %>

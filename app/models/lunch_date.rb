@@ -73,7 +73,6 @@ class LunchDate < ApplicationRecord
     self.vicinity = spot.vicinity
     puts "adding photos"
     spot.photos.each do |photo|
-      p photo
       photo = Photo.new(
         photo_reference: photo.photo_reference,
         photo_url: photo.fetch_url(400),

@@ -42,14 +42,15 @@
   <script>
     // var messagesContainer = document.querySelector('.messages');
     // const input = document.querySelector('#message_content');
-    function scrollLastMessageIntoView() {
-      const messages = document.querySelectorAll('.message');
-      const lastMessage = messages[messages.length - 1];
 
-      if (lastMessage !== undefined) {
-        lastMessage.scrollIntoView();
-      }
-    }
+    // function scrollLastMessageIntoView() {
+    //   const messages = document.querySelectorAll('.message');
+    //   const lastMessage = messages[messages.length - 1];
+
+    //   if (lastMessage !== undefined) {
+    //     lastMessage.scrollIntoView();
+    //   }
+    // }
 
     // scrollLastMessageIntoView();
     App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create(

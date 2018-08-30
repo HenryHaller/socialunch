@@ -9,9 +9,11 @@ class LunchRequest < ApplicationRecord
   # }
   belongs_to :user
   has_one :lunch_date
-  geocoded_by :address
+  # geocoded_by :address
   # after_validation :geocode, if: :will_save_change_to_address?
-  validates :latitude, exclusion: { in: [0.0] }
+  # validates :latitude, exclusion: { in: [0.0] }
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode
 
 
   TYPES = ["casual", "professional"]

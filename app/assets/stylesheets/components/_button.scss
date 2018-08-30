@@ -38,7 +38,7 @@
  .lunch_request_btn {
       color: white;
       background-color: #FD6A02;
-      width: 40%;
+      width: 70%;
       height: 45px;
     }
 
@@ -52,4 +52,11 @@
 
 .cancel_request {
   margin: 15px;
+  border-radius: 22px;
+  color: red;
+  text-decoration: none;
+  box-shadow: 0.1px 0.1px 0.1px 0.1px red;
+  text-align: center;
+  padding: 5px;
+  font-size: 10px;
 }

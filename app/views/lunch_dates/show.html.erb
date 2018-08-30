@@ -10,22 +10,24 @@
     <h3 class="text-center">A Few Details...</h3>
   </div>
  -->
-  <div class="buddy-chat">
-    <!--     <div class="row"> -->
-    <div class="col-xs-12 col-sm-8">
-      <div class="match_content">
-        <%= render "match_content", primary_user: primary_user, secondary_user: secondary_user %>
+  <div class="row">
+    <div class="buddy-chat">
+      <!--     <div class="row"> -->
+      <div class="col-xs-12 col-sm-8">
+        <div class="match_content">
+          <%= render "match_content", primary_user: primary_user, secondary_user: secondary_user %>
+        </div>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-4">
-      <div class="chat-block">
-        <%= render "chat", primary_user: primary_user, secondary_user: secondary_user %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="chat-block">
+          <%= render "chat", primary_user: primary_user, secondary_user: secondary_user %>
+        </div>
       </div>
+      <!--     </div> -->
     </div>
-    <!--     </div> -->
   </div>
-  <div class="map-section">
-    <div class="row">
+  <div class="row">
+    <div class="map-section">
       <div class="col-xs-12 col-sm-8">
         <%= render "map_block" %>
       </div>
@@ -43,18 +45,18 @@
     function scrollLastMessageIntoView() {
       const messages = document.querySelectorAll('.message');
       const lastMessage = messages[messages.length - 1];
-    
+
       if (lastMessage !== undefined) {
         lastMessage.scrollIntoView();
       }
     }
-    
+
     // scrollLastMessageIntoView();
     App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create(
       { channel: 'ChatRoomsChannel', lunch_date_id: <%= @lunch_date.id %> }, {
         received: (data) => {
           console.log(data)
-    
+
           if (data.current_user_id !== <%= current_user.id %>) {
             document.querySelector('.messages').insertAdjacentHTML('beforeend', data.message_partial);
             // scrollLastMessageIntoView();

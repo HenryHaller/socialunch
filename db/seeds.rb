@@ -17,6 +17,7 @@ Tsuzumi = {
   bio: 'I am a graduate student at Tokyo University. I will attend medical school in the fall.',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years),
+  score: 591
 }
 
 Ableen = {
@@ -26,6 +27,7 @@ Ableen = {
   bio: 'I am visiting Tokyo from San Francisco. I quit my job to travel the world. I have visited more than 30 countries',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years),
+  score: 434
 }
 
 Henry = {
@@ -34,7 +36,8 @@ Henry = {
   last_name: "Haller",
   bio: 'I love to lunch. It is my favorite time of the day because I get to meet new people and enjoy delicous food.',
   password: "123456",
-  birthday: (Time.now - (18..65).to_a.sample.years)
+  birthday: (Time.now - (18..65).to_a.sample.years),
+  score: 858
 }
 
 tsuzumi = User.new(Tsuzumi)

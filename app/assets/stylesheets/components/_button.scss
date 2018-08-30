@@ -59,8 +59,12 @@
     border-radius: 22px;
     color: red;
     text-decoration: none;
-    box-shadow: 0.1px 0.1px 0.1px 0.1px red;
+    border: 1px solid red;
     text-align: center;
     padding: 5px;
     font-size: 10px;
+  }
+
+  a.cancel_request {
+    text-decoration: none;
   }

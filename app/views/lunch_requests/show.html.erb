@@ -1,16 +1,18 @@
 <div class="container">
   <% unless @lunch_request.scored? %>
-    <%= simple_form_for @lunch_request, value: "Feeling lucky?", remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-      <%= f.submit %>
+  <div class="score-boxes">
+    <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+    <%= f.button :submit, "felling lucky?!", class: "points-button" %>
     <% end %>
-    <%= simple_form_for @lunch_request, value: "Feeling lucky?", remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-      <%= f.submit %>
+    <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+    <%= f.button :submit, "felling lucky?!", class: "points-button" %>
     <% end %>
-    <%= simple_form_for @lunch_request, value: "Feeling lucky?", remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-      <%= f.submit %>
+    <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+    <%= f.button :submit, "felling lucky?!", class: "points-button" %>
     <% end %>
-    <% else %>
-    <h5>Your Score increase for this request was: <%= @lunch_request.score_increase %></h5>
+  </div>
+  <% else %>
+  <h5>Your Score increase for this request was: <%= @lunch_request.score_increase %></h5>
   <% end %>
   <div class="row">
     <div class="col-xs-12 col-sm-12">
@@ -50,23 +52,23 @@
  </div>
 
  <% content_for :after_js do %>
-   <script>
-    console.log("my script runs");
-    App['incoming_requests'] = App.cable.subscriptions.create(
-      { channel: 'IncomingRequestsChannel' },
-      { received: (data) => {
-        console.log(data);
-        const myRequestId = <%= @lunch_request.id %>;
-        if ( myRequestId === data.lunch_date.request1_id || myRequestId === data.lunch_date.request2_id ) {
-         console.log('concerned')
-         window.location.replace("<%= lunch_dates_path %>/" + data.lunch_date.id);
+ <script>
+  console.log("my script runs");
+  App['incoming_requests'] = App.cable.subscriptions.create(
+    { channel: 'IncomingRequestsChannel' },
+    { received: (data) => {
+      console.log(data);
+      const myRequestId = <%= @lunch_request.id %>;
+      if ( myRequestId === data.lunch_date.request1_id || myRequestId === data.lunch_date.request2_id ) {
+       console.log('concerned')
+       window.location.replace("<%= lunch_dates_path %>/" + data.lunch_date.id);
 
-       } else {
-         console.log('not concerned in this match')
-       }
-     } }
-     );
-   </script>
+     } else {
+       console.log('not concerned in this match')
+     }
+   } }
+   );
+ </script>
  <% end %>
  <%= javascript_pack_tag "scoring" %>
 

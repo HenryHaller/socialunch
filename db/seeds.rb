@@ -42,6 +42,7 @@ tsuzumi.photo = Rails.root.join("db/images/tsuzumi.jpeg").open
 ableen = User.new(Ableen)
 ableen.photo = Rails.root.join("db/images/ableen.jpeg").open
 henry = User.new(Henry)
+henry.photo = Rails.root.join("db/images/ableen.jpeg").open
 
 puts tsuzumi.errors.messages unless tsuzumi.save
 puts ableen.errors.messages unless ableen.save

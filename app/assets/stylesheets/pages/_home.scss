@@ -49,8 +49,34 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 #map {
   border: 1px;
   margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
+.location_map {
+  display: flex;
+}
+
+.location_info {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  margin-top: 150px;
+  margin-right: -50px;
+  text-align: center;
+  background-color: black;
+  position: relative; z-index:1;
+}
+
+.current_location {
+
+  position: relative;
+  right: 50px;
+  bottom: 70px;
+}
+
+.current_location1 {
+  border-bottom: 1px solid orange;
+}
 .lunch_show_page {
   height: 300px;
   width: auto;

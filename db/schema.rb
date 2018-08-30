@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_004459) do
     t.boolean "active", default: true, null: false
     t.float "latitude", default: 0.0, null: false
     t.float "longitude", default: 0.0, null: false
-    t.string "address", default: "Please put in your full address here.", null: false
+    t.string "address", default: "", null: false
     t.index ["lunch_date_id"], name: "index_lunch_requests_on_lunch_date_id"
     t.index ["user_id"], name: "index_lunch_requests_on_user_id"
   end

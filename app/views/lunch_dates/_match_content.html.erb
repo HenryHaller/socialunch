@@ -15,10 +15,9 @@
       <% else %>
         <%= image_tag("default_avatar.png", :class => "lunch_show_page") %>
       <% end %>
-      <div class="buddy_bio">
-        <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %>
-        <h3>Buddy Bio:</h3>
-        <h6 class="bio"><%= secondary_user.bio %></h6>
+      <div class="buddy_bio"><strong>
+          <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong>
+        <h6 class="bio"><em><%= secondary_user.bio %></em></h6>
       </div>
     </div>
     <!--       </div> -->

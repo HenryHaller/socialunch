@@ -14,6 +14,7 @@
           <div class="sk-cube sk-cube8"></div>
           <div class="sk-cube sk-cube9"></div>
         </div>
+        <%= @lunch_request.address %>
         <!--       <div class="cancel_request text-center"> -->
         <%= link_to "Cancel request", lunch_request_path(@lunch_request), method: :delete, class: 'cancel_request' %>
         <!--       </div> -->

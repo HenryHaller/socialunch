@@ -6,6 +6,7 @@ class CreateLunchRequests < ActiveRecord::Migration[5.2]
       t.string :lunch_type
       t.references :user
       t.references :lunch_date
+      t.integer :score_increase
 
       t.timestamps
     end

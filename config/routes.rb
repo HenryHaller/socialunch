@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :lunch_requests, only: [:new, :create, :show, :destroy]
+  resources :lunch_requests, only: [:new, :create, :show, :destroy, :update]
   resources :lunch_dates, only: [:index, :show] do
     resources :messages, only: [:create]
   end

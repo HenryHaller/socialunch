@@ -1,0 +1,4 @@
+document.querySelector("#score_box").innerText = <%= current_user.score %>
+const scoreForms = document.querySelectorAll(".score_form")
+
+scoreForms.forEach( (scoreForm) => {scoreForm.remove();})

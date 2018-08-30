@@ -22,6 +22,14 @@ class LunchRequest < ApplicationRecord
     self.save
   end
 
+  def self.generate_score_increase
+    (1..5).to_a.sample
+  end
+
+  def scored?
+    self.score_increase > 0
+  end
+
 
 
 

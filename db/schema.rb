@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_004459) do
     t.string "lunch_type"
     t.bigint "user_id"
     t.bigint "lunch_date_id"
+    t.integer "score_increase", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true, null: false
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 2018_08_29_004459) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

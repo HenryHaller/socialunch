@@ -221,6 +221,8 @@ span.step {
 }
 
 
-#score_box {
-  display: inline;
+#score-boxes {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
 }

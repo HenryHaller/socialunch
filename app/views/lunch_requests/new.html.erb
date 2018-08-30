@@ -1,12 +1,4 @@
-<style type="text/css">
-.form-inputs {
-  border-radius: 2px;
-  margin-bottom: 50px;
-  margin-top: 50px;
-  left: 50px;
-  text-align: center;
-}
-</style>
+
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
 <div class="devisebanner" style="background-image:linear-gradient(-200deg, rgba(0,90,168,0.9), 0%, rgba(10,50,61,0.3) 40%), url('<%= image_path("group-dining.jpg") %>');">
   <div class="banner-content">
@@ -14,10 +6,8 @@
       <div class="row">
         <div class="location_map">
           <div class="col-xs-12 col-sm-4">
-            <div class="location_info">
-              <div class="current_location1">
+            <div class="location_info1">
                 <h3 class="current_location">Current Location </h3>
-              </div>
               <%= simple_form_for @lunch_request do |f| %>
               <div class="form-inputs">
                 <input type="hidden" id="lat" name="lunch_request[latitude]" value="0" />

@@ -59,19 +59,46 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 
 .location_info {
   padding-top: 80px;
-  padding-bottom: 80px;
+  padding-bottom: 45px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-top: 150px;
   margin-right: -50px;
+  left: 40px;
   text-align: center;
-  background-color: black;
+  background-color: #2E2E2E;
   position: relative; z-index:1;
+  box-shadow: 1px 2px 1px gray;
+}
+
+.location_info1 {
+  padding-top: 70px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 180px;
+  margin-right: -50px;
+  left: 40px;
+  text-align: center;
+  background-color: #2E2E2E;
+  position: relative; z-index:1;
+  box-shadow: 1px 2px 1px gray;
 }
 
 .current_location {
 
   position: relative;
-  right: 50px;
   bottom: 70px;
+  text-decoration: underline #fd6a02;
+  color: white;
+  text-align: left;
+}
+
+.lunch_address {
+  color: white;
+  margin-top: -50px;
+  margin-bottom: 30px;
+  text-align: left;
 }
 
 .current_location1 {

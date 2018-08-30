@@ -14,16 +14,29 @@
           <div class="sk-cube sk-cube8"></div>
           <div class="sk-cube sk-cube9"></div>
         </div>
-        <%= @lunch_request.address %>
-        <!--       <div class="cancel_request text-center"> -->
-        <%= link_to "Cancel request", lunch_request_path(@lunch_request), method: :delete, class: 'cancel_request' %>
-        <!--       </div> -->
       </div>
-      <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
-      <div id="map" style="width: 80%; height: 500px;" data-location="<%= @location.to_json %>"></div>
     </div>
-    <%= javascript_pack_tag "map" %>
-    <% content_for :after_js do %>
+  </div>
+  <div class="row">
+    <div class="location_map">
+      <div class="col-xs-12 col-sm-4">
+        <div class="location_info">
+          <h3 class="current_location">Current Location </h3>
+           <p class="lunch_address"><%= @lunch_request.address %></p>
+          <!--       <div class="cancel_request text-center"> -->
+          <%= link_to "Cancel request", lunch_request_path(@lunch_request), method: :delete, class: 'cancel_request' %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-8">
+         <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
+        <div id="map" style="width: 100%; height: 500px;" data-location="<%= @location.to_json %>"></div>
+        <%= javascript_pack_tag "map" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
       <script>
         console.log("my script runs");
         App['incoming_requests'] = App.cable.subscriptions.create(
@@ -41,4 +54,7 @@
           } }
         );
       </script>
-    <% end %>
+<% end %>
+
+        <!--       </div> -->
+

@@ -1,21 +1,28 @@
 .matched_them {
   text-align: left;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 5px;
+  margin: 30px;
+  box-shadow: 0 0 5px gray;
+  height: 300px;
 }
 
 .matched_address {
+  position: relative;
   text-align: center;
-  padding-top: 5px;
-  padding-bottom: 10px;
+  margin: 30px;
+  box-shadow: 0 0 5px gray;
+}
 
+.match_content h3 {
+  font-size: 24px;
+  font-family: $body-font;
+  font-weight: bold;
+  position: relative;
+  top: 10px;
 }
 
 .info_title {
   font-size: 32px;
   margin-left: 60px;
-
 }
 
 .bio {
@@ -24,11 +31,19 @@
 
 .buddy_info {
   display: flex;
-  margin-left: 100px;
-
+  margin-left: 50px;
 }
 
 .buddy_bio {
   margin-top: 30px;
   margin-left: 20px;
+}
+
+.lunch_show_page {
+  margin: 10px;
+  position: relative;
+  top: 30px;
+  height: 50%;
+  width: auto;
+  border-radius: 50%;
 }

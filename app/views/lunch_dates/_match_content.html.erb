@@ -35,21 +35,17 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <% @lunch_date.photos.each_with_index do |photo, index| %>
+          <li data-target="#myCarousel" data-slide-to="<%= index %>" <% if index == 0 %>class="active"<% end %>></li>
+        <% end %>
       </ol>
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <div class="item active">
-          <%= image_tag photo1.photo_url %>
-        </div>
-        <div class="item">
-          <%= image_tag photo2.photo_url %>
-        </div>
-        <div class="item">
-          <%= image_tag photo3.photo_url %>
-        </div>
+        <% @lunch_date.photos.each_with_index do |photo, index| %>
+          <div class="item <% if index == 0 %>active<% end %>" style="width: 200px; height: 200px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= photo.photo_url %>');">
+            <%#= image_tag photo1.photo_url %>
+          </div>
+        <% end %>
       </div>
       <!-- Left and right controls -->
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">

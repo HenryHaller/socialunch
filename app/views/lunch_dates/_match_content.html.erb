@@ -37,8 +37,6 @@
       <div class="carousel-inner">
         <% @lunch_date.photos.each_with_index do |photo, index| %>
           <div class="item <% if index == 0 %>active<% end %>" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= photo.photo_url %>');">
-
-            <%#= image_tag photo1.photo_url %>
           </div>
         <% end %>
       </div>

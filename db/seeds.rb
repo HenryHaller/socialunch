@@ -6,7 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.delete_all
+User.destroy_all
+LunchRequest.destroy_all
+LunchDate.destroy_all
 
 Tsuzumi = {
   email: "tsuzumi@gmail.com",
@@ -14,7 +16,7 @@ Tsuzumi = {
   last_name: "Sato",
   bio: 'I am a student at Le Wagon.',
   password: "123456",
-  birthday: (Time.now - (18..65).to_a.sample.years)
+  birthday: (Time.now - (18..65).to_a.sample.years),
 }
 
 Ableen = {
@@ -23,7 +25,7 @@ Ableen = {
   last_name: "Tai",
   bio: 'I am a student at Le Wagon. ',
   password: "123456",
-  birthday: (Time.now - (18..65).to_a.sample.years)
+  birthday: (Time.now - (18..65).to_a.sample.years),
 }
 
 Henry = {
@@ -36,7 +38,9 @@ Henry = {
 }
 
 tsuzumi = User.new(Tsuzumi)
+tsuzumi.photo = Rails.root.join("db/images/tsuzumi.jpeg").open
 ableen = User.new(Ableen)
+ableen.photo = Rails.root.join("db/images/ableen.jpeg").open
 henry = User.new(Henry)
 
 puts tsuzumi.errors.messages unless tsuzumi.save

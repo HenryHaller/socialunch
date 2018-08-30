@@ -5,38 +5,36 @@
   <% primary_user = @lunch_date.request2.user %>
   <% secondary_user = @lunch_date.request1.user %>
 <% end %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <div class="matched_them">
-        <h3 class="info_title">Your SociaLunch Buddy</h3>
-        <div class="buddy_info">
-          <% if secondary_user.photo.url %>
-            <%= cl_image_tag secondary_user.photo, :class => "lunch_show_page" %>
-          <% else %>
-            <%= image_tag("default_avatar.png", :class => "lunch_show_page") %>
-          <% end %>
-          <div class="buddy_bio">
-            <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %>
-            <h3>Buddy Bio:</h3>
-            <h6 class="bio"><%= secondary_user.bio %></h6>
-          </div>
-        </div>
+<!-- <div class="container"> -->
+<div class="row">
+  <!--     <div class="col-xs-12 col-sm-6"> -->
+  <div class="matched_them">
+    <div class="buddy_info">
+      <% if secondary_user.photo.url %>
+        <%= cl_image_tag secondary_user.photo, :class => "lunch_show_page" %>
+      <% else %>
+        <%= image_tag("default_avatar.png", :class => "lunch_show_page") %>
+      <% end %>
+      <div class="buddy_bio">
+        <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %>
+        <h3>Buddy Bio:</h3>
+        <h6 class="bio"><%= secondary_user.bio %></h6>
       </div>
     </div>
+    <!--       </div> -->
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <div class="matched_address">
-        <h3>Restaurant Name</h3>
-        <p><%= @lunch_date.venue_name %></p>
-        <h3>Restaurant Address:</h3>
-        <p><%= @lunch_date.vicinity %></p>
-        <% photo1 = @lunch_date.photos[0] %>
-        <% photo2 = @lunch_date.photos[1] %>
-        <%= image_tag photo1.photo_url %><%= image_tag photo2.photo_url %>
-        <h6>Source: <%= sanitize photo1.html_attribution, tags: %w(a), attributes: %w(href) %>  Source: <%= sanitize photo2.html_attribution, tags: %w(a), attributes: %w(href) %></h6>
-      </div>
+  <!--   </div> -->
+  <!-- <div class="row"> -->
+  <!--     <div class="col-xs-12 col-sm-6"> -->
+  <div class="matched_address">
+    <h3><%= @lunch_date.venue_name %></h3>
+    <% photo1 = @lunch_date.photos[0] %>
+    <% photo2 = @lunch_date.photos[1] %>
+    <% photo3 = @lunch_date.photos[2] %>
+    <div>
+      <%= image_tag photo1.photo_url %><%= image_tag photo2.photo_url %><%= image_tag photo3.photo_url %>
     </div>
   </div>
+  <!-- </div> -->
+  <!--   </div> -->
 </div>

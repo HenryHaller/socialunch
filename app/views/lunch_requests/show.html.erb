@@ -1,23 +1,24 @@
 <div class="container">
-  <% unless @lunch_request.scored? %>
-  <div class="score-boxes">
-    <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-    <%= f.button :submit, "felling lucky?!", class: "points-button" %>
-    <% end %>
-    <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-    <%= f.button :submit, "felling lucky?!", class: "points-button" %>
-    <% end %>
-    <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-    <%= f.button :submit, "felling lucky?!", class: "points-button" %>
-    <% end %>
-  </div>
-  <% else %>
-  <h5>Your Score increase for this request was: <%= @lunch_request.score_increase %></h5>
-  <% end %>
   <div class="row">
     <div class="col-xs-12 col-sm-12">
       <div class="content">
         <h3>Waiting for a lunch buddy!</h3>
+        <% unless @lunch_request.scored? %>
+        <div class="score-boxes">
+          <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+          <%= f.button :submit, "Get Points!", class: "points-button" %>
+          <% end %>
+          <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+          <%= f.button :submit, "Get Points!", class: "points-button" %>
+          <% end %>
+          <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+          <%= f.button :submit, "Get Points!", class: "points-button" %>
+          <% end %>
+        </div>
+        <% else %>
+        <h5>Your Score increase for this request was: <%= @lunch_request.score_increase %></h5>
+        <% end %>
+
         <div class="sk-cube-grid">
           <div class="sk-cube sk-cube1"></div>
           <div class="sk-cube sk-cube2"></div>

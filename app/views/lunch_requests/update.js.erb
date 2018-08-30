@@ -1,6 +1,3 @@
-document.querySelector("#score_box").innerText = <%= current_user.score %>
-const scoreForms = document.querySelectorAll(".score_form")
+document.querySelector("#score_box").innerText = <%= current_user.score %>;
 
-scoreForms.forEach( (scoreForm) => {scoreForm.remove();})
-
-document.querySelector(".container").insertAdjacentHTML('afterbegin', "<h5>Your Score increase for this request was: <%= @lunch_request.score_increase %></h5>")
+document.querySelector(".content").insertAdjacentHTML('afterbegin', "<h5>Your Score increase for this request was: <%= @lunch_request.score_increase %></h5>")

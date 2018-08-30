@@ -14,7 +14,7 @@ Tsuzumi = {
   email: "tsuzumi@gmail.com",
   first_name: "Tsuzumi",
   last_name: "Sato",
-  bio: 'I am a student at Le Wagon.',
+  bio: 'I am a graduate student at Tokyo University. I will attend medical school in the fall.',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years),
 }
@@ -23,7 +23,7 @@ Ableen = {
   email: "ableen@gmail.com",
   first_name: "Ableen",
   last_name: "Tai",
-  bio: 'I am a student at Le Wagon. ',
+  bio: 'I am visiting Tokyo from San Francisco. I quit my job to travel the world. I have visited more than 30 countries',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years),
 }
@@ -32,7 +32,7 @@ Henry = {
   email: "henry@gmail.com",
   first_name: "Henry",
   last_name: "Haller",
-  bio: 'I am a student at Le Wagon. ',
+  bio: 'I love to lunch. It is my favorite time of the day because I get to meet new people and enjoy delicous food.',
   password: "123456",
   birthday: (Time.now - (18..65).to_a.sample.years)
 }

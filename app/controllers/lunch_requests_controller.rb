@@ -30,6 +30,27 @@ class LunchRequestsController < ApplicationController
     end
   end
 
+  def update
+    @lunch_request = LunchRequest.find(params[:id])
+    authorize @lunch_request
+    if @lunch_request.scored?
+      @score_increase = 0
+    else
+      @lunch_request.score_increase = LunchRequest.generate_score_increase
+      @lunch_request.save
+      current_user.score += @lunch_request.score_increase
+      current_user.save
+    end
+
+
+
+    @lunch_request.save
+    current_user.save
+    respond_to do |format|
+      format.js  # <-- idem
+    end
+  end
+
   def show
     @lunch_request = LunchRequest.find(params[:id])
     @location = {lat: @lunch_request.latitude, lng: @lunch_request.longitude}

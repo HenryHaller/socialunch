@@ -12,6 +12,10 @@ class LunchRequestPolicy < ApplicationPolicy
     true  # Anyone can create a restaurant
   end
 
+  def update?
+    record.user == user
+  end
+
   def show?
     record.user == user
   end

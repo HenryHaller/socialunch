@@ -223,6 +223,12 @@ if ("geolocation" in navigator) {
     });
     map.setStyle('map_style');
     map.setZoom(17);
+    const mySubmit = document.querySelector("#mySubmit");
+    console.log(mySubmit);
+    mySubmit.value = "Ready to Eat!";
+    mySubmit.disabled = false;
+    mySubmit.classList.remove("lunch_request_btn_unready");
+    mySubmit.classList.add("lunch_request_btn");
     // if (markers.length === 0) {
     //   map.setZoom(2);
     // } else if (markers.length === 1) {

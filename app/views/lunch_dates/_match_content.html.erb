@@ -5,9 +5,7 @@
   <% primary_user = @lunch_date.request2.user %>
   <% secondary_user = @lunch_date.request1.user %>
 <% end %>
-<!-- <div class="container"> -->
 <div class="row">
-  <!--     <div class="col-xs-12 col-sm-6"> -->
   <div class="matched_them">
     <div class="buddy_info">
       <div class="match_photo">
@@ -17,16 +15,12 @@
           <%= image_tag("default_avatar.png", :class => "lunch_show_page") %>
         <% end %>
       </div>
-      <div class="buddy_bio"><strong>
-          <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong>
+      <div class="buddy_bio">
+        <h3><strong><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong></h3>
         <h6 class="bio"><em><%= secondary_user.bio %></em></h6>
       </div>
     </div>
-    <!--       </div> -->
   </div>
-  <!--   </div> -->
-  <!-- <div class="row"> -->
-  <!--     <div class="col-xs-12 col-sm-6"> -->
   <div class="matched_address">
     <h3><%= @lunch_date.venue_name %></h3>
     <% photo1 = @lunch_date.photos[0] %>
@@ -42,7 +36,8 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
         <% @lunch_date.photos.each_with_index do |photo, index| %>
-          <div class="item <% if index == 0 %>active<% end %>" style="width: 200px; height: 200px; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= photo.photo_url %>');">
+          <div class="item <% if index == 0 %>active<% end %>" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= photo.photo_url %>');">
+
             <%#= image_tag photo1.photo_url %>
           </div>
         <% end %>
@@ -58,6 +53,6 @@
       </a>
     </div>
   </div>
-  <!-- </div> -->
-  <!--   </div> -->
 </div>
+
+

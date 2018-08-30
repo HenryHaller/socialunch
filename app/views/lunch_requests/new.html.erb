@@ -22,7 +22,7 @@
               <div class="form-inputs">
                 <input type="hidden" id="lat" name="lunch_request[latitude]" value="0" />
                 <input type="hidden" id="lng" name="lunch_request[longitude]" value="0" />
-                <%= f.button :submit, value: 'Ready to Eat!', class: "lunch_request_btn" %>
+                <%= f.button :submit, value: 'Finding You...', class: "lunch_request_btn_unready", disabled: "true", id: "mySubmit" %>
               </div>
               <% end %>
             </div>

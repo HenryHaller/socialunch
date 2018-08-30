@@ -20,45 +20,47 @@
     // border-color: #FD6A02;
     border-radius: 22px;
     box-shadow: 2px 2px 5px #FD6A02;
-}
+  }
 
-.btn-lg {
-  border-radius: 10px;
-}
+  .btn-lg {
+    border-radius: 10px;
+  }
 
-.btn-info {
-  color: white;
-  background-color: #6DB5B3;
-}
+  .btn-info {
+    color: white;
+    background-color: #6DB5B3;
+  }
 
-.form-inputs {
-  color: black;
-}
+  .form-inputs {
+    color: black;
+  }
 
- .lunch_request_btn {
-      position: relative;
-      bottom: 50px;
-      color: white;
-      background-color: #FD6A02;
-      width: 70%;
-      height: 45px;
-    }
+  .lunch_request_btn {
+    position: relative;
+    bottom: 50px;
+    color: white;
+    background-color: #FD6A02;
+    width: 70%;
+    height: 45px;
+  }
 
-   .lunch_request_btn_unready {
-      color: white;
-      background-color: #FD6A02;
-      width: 40%;
-      height: 45px;
-    }
+  .lunch_request_btn_unready {
+    position: relative;
+    bottom: 50px;
+    color: white;
+    background-color: black;
+    width: 70%;
+    height: 45px;
+  }
 
 
-.cancel_request {
-  margin: 15px;
-  border-radius: 22px;
-  color: red;
-  text-decoration: none;
-  box-shadow: 0.1px 0.1px 0.1px 0.1px red;
-  text-align: center;
-  padding: 5px;
-  font-size: 10px;
-}
+  .cancel_request {
+    margin: 15px;
+    border-radius: 22px;
+    color: red;
+    text-decoration: none;
+    box-shadow: 0.1px 0.1px 0.1px 0.1px red;
+    text-align: center;
+    padding: 5px;
+    font-size: 10px;
+  }

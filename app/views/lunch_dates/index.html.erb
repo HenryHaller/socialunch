@@ -13,7 +13,7 @@
       <div class="col-xs-12 col-sm-12">
         <div class="history">
           <h5>Your lunch with <strong><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong></h5>
-          <p class="date_begin">On<%= lunch_date.begin.strftime("%c") %></p>
+          <p class="date_begin">On <%= lunch_date.begin.strftime("%m/%d/%Y") %></p>
           <div class="history-img">
               <%= cl_image_tag secondary_user.photo, :class => "lunch_index" %>
           </div>

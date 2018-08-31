@@ -4,4 +4,8 @@ console.log(scoreBox);
 scoreBox.innerText = "<%= current_user.score %>";
 
 
-document.querySelector(".content").insertAdjacentHTML('afterbegin', "<h5>You got <%= @lunch_request.score_increase %> points!</h5>")
+<!-- document.querySelector(".content").insertAdjacentHTML('afterbegin', "<h5>You got <%= @lunch_request.score_increase %> points!</h5>") -->
+
+
+const lunchBoxForm = document.getElementById("<%= @box %>")
+lunchBoxForm.innerHTML = '<%= j render "lunch_requests/score_notification", score: @lunch_request.score_increase %>'

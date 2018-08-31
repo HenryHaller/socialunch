@@ -37,7 +37,7 @@ class LunchDate < ApplicationRecord
   # end
 
   def initial_message
-    content = "Get started on your lunch plans here ;) #{self.request1.user.first_name} and #{self.request2.user.first_name}!"
+    content = "Hello #{self.request1.user.first_name} and #{self.request2.user.first_name}! Use this space to get started on your lunch plans :) "
     m = Message.new(
       lunch_date: self,
       content: content,

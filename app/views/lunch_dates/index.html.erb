@@ -1,5 +1,5 @@
-
-<h3 class="text-center">Your SociaLunch History</h3>
+<div class="date_container" style="padding-top: 20px;">
+<h2 class="text-center" style="color:#FD6A02">Lunches</h2>
 <% @lunch_dates.each do |lunch_date| %>
   <% if current_user == lunch_date.request1.user %>
     <% primary_user = lunch_date.request1.user %>
@@ -8,23 +8,24 @@
     <% primary_user = lunch_date.request2.user %>
     <% secondary_user = lunch_date.request1.user %>
   <% end %>
-  <div class="date_container">
     <div class="row">
       <div class="col-xs-12 col-sm-12">
         <div class="history">
-          <h5>Your lunch with <strong><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong></h5>
-          <p class="date_begin">On <%= lunch_date.begin.strftime("%m/%d/%Y") %></p>
-          <div class="history-img">
-              <%= cl_image_tag secondary_user.photo, :class => "lunch_index" %>
+          <div class="history-header" style="display:flex; justify-content:space-between;align-items: center">
+            <h5 style="margin:30px 0 10px 30px"><strong><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong></h5>
+            <p class="date_begin"><%= lunch_date.begin.strftime("%m/%d/%Y") %></p>
           </div>
-          <div class="history-info">
-            <p>You ate at <%= lunch_date.venue_name %>, which is found at <%= lunch_date.vicinity %>.</p>
-            <p>Still have something to talk about?<br>
-            <%= link_to "Stay in touch", lunch_date_path(lunch_date) %></p>
+          <div class="history-img" style="display: flex;justify-content: flex-start;align-items: center;">
+              <%= cl_image_tag secondary_user.photo, :class => "lunch_index" %>
+            <div class="history-info" style="position: relative;bottom:0;top:0;right:0;left:0;">
+              <p>You ate at <%= lunch_date.venue_name %>, which is found at <%= lunch_date.vicinity %>.</p>
+              <!-- <p>You ate at <%= lunch_date.venue_name %>, which is found at <%= lunch_date.vicinity %>.</p> -->
+              <p>Still have something to talk about?<br>
+              <%= link_to "Stay in touch", lunch_date_path(lunch_date) %></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 <% end %>
-
+</div>

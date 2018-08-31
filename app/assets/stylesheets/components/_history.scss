@@ -1,15 +1,46 @@
 .lunch_index {
-  height: 150px;
+  height: 200px;
   width: auto;
   border-radius: 50%;
-  margin: 10px;
+  margin: 30px 30px;
   position: relative;
-  top: 30px;
 }
 
 .history {
   position: relative;
-  border: 2px solid black;
-  margin: 0 20px;
-  padding: 20px;
+  border: 1px solid black;
+  margin: 30px 70px;
+  box-shadow: 1px 1px 1px gray;
+  height: 385px;
+  background-color: #ffffff;
+}
+
+.history-info {
+  position: relative;
+  left: 351px;
+  bottom: 251px;
+  width: 700px;
+  height: auto;
+  margin: 30px;
+
+}
+
+.history-info p {
+  font-size: 24px;
+
+}
+
+.history h5 {
+  font-size: 32px;
+  color: #fd6a02;
+  margin: 30px;
+
+}
+
+.history-img {
+
+}
+
+.date_begin {
+  margin: 10px 30px;
 }

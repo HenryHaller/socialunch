@@ -75,7 +75,7 @@ class LunchDate < ApplicationRecord
     spot.photos.each do |photo|
       photo = Photo.new(
         photo_reference: photo.photo_reference,
-        photo_url: photo.fetch_url(200),
+        photo_url: photo.fetch_url(600),
         html_attribution: photo.html_attributions[0],
         lunch_date: self
       )

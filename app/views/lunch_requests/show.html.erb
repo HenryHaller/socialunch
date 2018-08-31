@@ -1,24 +1,23 @@
-<div class="container">
+<div class="devisebanner" style="background-image:linear-gradient(-200deg, rgba(0,90,168,0.9), 0%, rgba(10,50,61,0.3) 40%), url('<%= image_path("group-dining.jpg") %>');">
   <div class="row">
     <div class="col-xs-12 col-sm-12">
       <div class="content">
         <h3>Waiting for a lunch buddy!</h3>
         <% unless @lunch_request.scored? %>
-        <div class="score-boxes">
-          <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-          <%= f.button :submit, "Get Points!", class: "points-button" %>
-          <% end %>
-          <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-          <%= f.button :submit, "Get Points!", class: "points-button" %>
-          <% end %>
-          <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-          <%= f.button :submit, "Get Points!", class: "points-button" %>
-          <% end %>
-        </div>
+          <div class="score-boxes">
+            <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+              <%= f.button :submit, "Get Points!", class: "points-button" %>
+            <% end %>
+            <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+              <%= f.button :submit, "Get Points!", class: "points-button" %>
+            <% end %>
+            <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
+              <%= f.button :submit, "Get Points!", class: "points-button" %>
+            <% end %>
+          </div>
         <% else %>
-        <h5>Your Score increase for this request was: <%= @lunch_request.score_increase %></h5>
+          <h5>You got <%= @lunch_request.score_increase %> points!</h5>
         <% end %>
-
         <div class="sk-cube-grid">
           <div class="sk-cube sk-cube1"></div>
           <div class="sk-cube sk-cube2"></div>
@@ -40,39 +39,35 @@
           <h3 class="current_location">Current Location </h3>
           <p class="lunch_address"><%= @lunch_request.address %></p>
           <!--       <div class="cancel_request text-center"> -->
-            <%= link_to "Cancel request", lunch_request_path(@lunch_request), method: :delete, class: 'cancel_request' %>
-          </div>
+          <%= link_to "Cancel request", lunch_request_path(@lunch_request), method: :delete, class: 'cancel_request' %>
         </div>
-        <div class="col-xs-12 col-sm-8">
-         <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
-         <div id="map" style="width: 100%; height: 500px;" data-location="<%= @location.to_json %>"></div>
-         <%= javascript_pack_tag "map" %>
-       </div>
-     </div>
-   </div>
- </div>
-
- <% content_for :after_js do %>
- <script>
-  console.log("my script runs");
-  App['incoming_requests'] = App.cable.subscriptions.create(
-    { channel: 'IncomingRequestsChannel' },
-    { received: (data) => {
-      console.log(data);
-      const myRequestId = <%= @lunch_request.id %>;
-      if ( myRequestId === data.lunch_date.request1_id || myRequestId === data.lunch_date.request2_id ) {
-       console.log('concerned')
-       window.location.replace("<%= lunch_dates_path %>/" + data.lunch_date.id);
-
-     } else {
-       console.log('not concerned in this match')
-     }
-   } }
-   );
- </script>
- <% end %>
- <%= javascript_pack_tag "scoring" %>
-
-
- <!--       </div> -->
-
+      </div>
+      <div class="col-xs-12 col-sm-8">
+        <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV["GOOGLE_API_BROWSER_KEY"]}" %>
+        <div id="map" style="width: 100%; height: 500px;" data-location="<%= @location.to_json %>"></div>
+        <%= javascript_pack_tag "map" %>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :after_js do %>
+  <script>
+    console.log("my script runs");
+    App['incoming_requests'] = App.cable.subscriptions.create(
+      { channel: 'IncomingRequestsChannel' },
+      { received: (data) => {
+        console.log(data);
+        const myRequestId = <%= @lunch_request.id %>;
+        if ( myRequestId === data.lunch_date.request1_id || myRequestId === data.lunch_date.request2_id ) {
+         console.log('concerned')
+         window.location.replace("<%= lunch_dates_path %>/" + data.lunch_date.id);
+    
+       } else {
+         console.log('not concerned in this match')
+       }
+     } }
+     );
+  </script>
+<% end %>
+<%= javascript_pack_tag "scoring" %>
+<!--       </div> -->

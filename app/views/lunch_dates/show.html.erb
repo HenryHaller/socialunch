@@ -5,14 +5,13 @@
   <% primary_user = @lunch_date.request2.user %>
   <% secondary_user = @lunch_date.request1.user %>
 <% end %>
-<div class="container">
+<div class="devisebanner" style="background-image:linear-gradient(-200deg, rgba(0,90,168,0.9), 0%, rgba(10,50,61,0.3) 40%), url('<%= image_path("group-dining.jpg") %>');">
   <!--   <div class="match_title">
     <h3 class="text-center">A Few Details...</h3>
   </div>
  -->
   <div class="buddy-chat">
     <div class="row">
-
       <!--     <div class="row"> -->
       <div class="col-xs-12 col-sm-8">
         <div class="match_content">
@@ -43,22 +42,22 @@
   <script>
     // var messagesContainer = document.querySelector('.messages');
     // const input = document.querySelector('#message_content');
-
+    
     // function scrollLastMessageIntoView() {
     //   const messages = document.querySelectorAll('.message');
     //   const lastMessage = messages[messages.length - 1];
-
+    
     //   if (lastMessage !== undefined) {
     //     lastMessage.scrollIntoView();
     //   }
     // }
-
+    
     // scrollLastMessageIntoView();
     App['lunch_date_<%= @lunch_date.id %>'] = App.cable.subscriptions.create(
       { channel: 'ChatRoomsChannel', lunch_date_id: <%= @lunch_date.id %> }, {
         received: (data) => {
           console.log(data)
-
+    
           if (data.current_user_id !== <%= current_user.id %>) {
             document.querySelector('.messages').insertAdjacentHTML('beforeend', data.message_partial);
             // scrollLastMessageIntoView();

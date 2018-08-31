@@ -2,7 +2,7 @@ class LunchDatesController < ApplicationController
   def index
     puts current_user
     @lunch_dates = []
-    LunchDate.all.each do |date|
+    LunchDate.order(begin: :desc).each do |date|
       puts date
       if date.request1.user == current_user || date.request2.user == current_user
         @lunch_dates << date

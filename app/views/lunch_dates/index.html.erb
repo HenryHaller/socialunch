@@ -1,3 +1,16 @@
 <% @lunch_dates.each do |lunch_date| %>
-<%= lunch_date %>
+<% if current_user == lunch_date.request1.user %>
+<% primary_user = lunch_date.request1.user %>
+<% secondary_user = lunch_date.request2.user %>
+<% else %>
+<% primary_user = lunch_date.request2.user %>
+<% secondary_user = lunch_date.request1.user %>
+<% end %>
+<div>
+  <h5>Your lunch with <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></h5>
+  <p>On <%= lunch_date.begin %> you enjoyed a SociaLunch with <%= cl_image_tag secondary_user.photo, :class => "lunch_show_page" %></p>
+</div>
+<div>
+  You ate at <%= lunch_date.venue_name %>, which is found at <%= lunch_date.vicinity %>.
+</div>
 <% end %>

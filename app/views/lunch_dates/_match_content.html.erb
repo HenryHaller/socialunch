@@ -16,7 +16,9 @@
         <% end %>
       </div>
       <div class="buddy_bio">
-        <h3><strong><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong></h3>
+        <h3><strong><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %><div id="score_box" style="background-image:url('<%= image_path("favourite-31.png") %>');">
+          <div class="score"><%= secondary_user.score %></div>
+        </div></strong></h3>
         <h6 class="bio"><%= secondary_user.bio %></h6>
       </div>
     </div>

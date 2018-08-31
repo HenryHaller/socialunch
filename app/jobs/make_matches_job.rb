@@ -70,6 +70,7 @@ class MakeMatchesJob < ApplicationJob
       lunch = LunchDate.new(
         request1: pair[0],
         request2: pair[1],
+        begin: Time.now,
         # restaurant: Restaurant.all.sample,
         # begin: Time.at(( pair[0].datetime.to_i + pair[1].datetime.to_i ) / 2),
         # suggested_duration: ( pair[0].suggested_duration + pair[1].suggested_duration ) / 2,

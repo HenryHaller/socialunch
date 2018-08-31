@@ -19,5 +19,9 @@ class User < ApplicationRecord
     # LunchRequest.where(user: user, active)
   end
 
+  def self.admin
+    @system_user || @system_user = User.find_by_email("system@gmail.com")
+  end
+
   # has_many :restaurants, through: :lunch_dates
 end

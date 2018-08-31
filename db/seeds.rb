@@ -59,7 +59,7 @@ Henry = {
 }
 
 henry = User.new(Henry)
-henry.photo = Rails.root.join("db/images/ableen.jpeg").open
+henry.photo = Rails.root.join("db/images/henry.jpeg").open
 puts henry.errors.messages unless henry.save
 
 

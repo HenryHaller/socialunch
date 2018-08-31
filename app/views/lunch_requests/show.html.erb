@@ -2,33 +2,52 @@
   <div class="row">
     <div class="col-xs-12 col-sm-12">
       <div class="content">
-        <h3>Waiting for a lunch buddy!</h3>
+        <!-- <h1>Waiting for a lunch buddy!</h1> -->
         <% unless @lunch_request.scored? %>
-          <div class="score-boxes">
-            <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-              <%= f.button :submit, "Get Points!", class: "points-button" %>
-            <% end %>
-            <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-              <%= f.button :submit, "Get Points!", class: "points-button" %>
-            <% end %>
-            <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form" } do |f| %>
-              <%= f.button :submit, "Get Points!", class: "points-button" %>
-            <% end %>
+          <div class="score-container" style="padding:50px">
+            <div style="display: flex;justify-content: center;align-items: center;margin-bottom: 40px">
+<!--               <div class="sk-cube-grid" style="margin:0;margin-right: 40px">
+                <div class="sk-cube sk-cube1"></div>
+                <div class="sk-cube sk-cube2"></div>
+                <div class="sk-cube sk-cube3"></div>
+                <div class="sk-cube sk-cube4"></div>
+                <div class="sk-cube sk-cube5"></div>
+                <div class="sk-cube sk-cube6"></div>
+                <div class="sk-cube sk-cube7"></div>
+                <div class="sk-cube sk-cube8"></div>
+                <div class="sk-cube sk-cube9"></div>
+              </div> -->
+              <h4 style="color: white;">While you wait, earn bonus points!</h4>
+              <div class="sk-cube-grid" style="margin:0;margin-left: 40px;display:flex">
+<!--                 <div class="sk-cube sk-cube1"></div>
+                <div class="sk-cube sk-cube2"></div>
+                <div class="sk-cube sk-cube3"></div> -->
+                <div class="sk-cube sk-cube4" style="border-radius:50px"></div>
+                <div class="sk-cube sk-cube5" style="border-radius:50px;margin-left: 5px;"></div>
+                <div class="sk-cube sk-cube6" style="border-radius:50px;margin-left: 5px;"></div>
+<!--                 <div class="sk-cube sk-cube7"></div>
+                <div class="sk-cube sk-cube8"></div>
+                <div class="sk-cube sk-cube9"></div> -->
+              </div>
+            </div>
+            <div class="score-boxes" style="margin-bottom:30px">
+              <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form", id: "box1"} do |f| %>
+                <%= hidden_field_tag "box", "box1" %>
+                 <%= image_submit_tag("lunch_box.png", style: "width: 130px;background-color:#FD6A02;border-radius:10px") %>
+              <% end %>
+              <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form", id: "box2" } do |f| %>
+                <%= hidden_field_tag "box", "box2" %>
+                <%= image_submit_tag("lunch_box.png", style: "width: 130px;background-color:#FD6A02;border-radius:10px") %>
+              <% end %>
+              <%= simple_form_for @lunch_request, remote: true, html: {autocomplete: "off", class: "score_form", id: "box3" } do |f| %>
+                <%= hidden_field_tag "box", "box3" %>
+                <%= image_submit_tag("lunch_box.png", style: "width: 130px;background-color:#FD6A02;border-radius:10px") %>
+              <% end %>
+            </div>
           </div>
         <% else %>
           <h5>You got <%= @lunch_request.score_increase %> points!</h5>
         <% end %>
-        <div class="sk-cube-grid">
-          <div class="sk-cube sk-cube1"></div>
-          <div class="sk-cube sk-cube2"></div>
-          <div class="sk-cube sk-cube3"></div>
-          <div class="sk-cube sk-cube4"></div>
-          <div class="sk-cube sk-cube5"></div>
-          <div class="sk-cube sk-cube6"></div>
-          <div class="sk-cube sk-cube7"></div>
-          <div class="sk-cube sk-cube8"></div>
-          <div class="sk-cube sk-cube9"></div>
-        </div>
       </div>
     </div>
   </div>
@@ -61,7 +80,7 @@
         if ( myRequestId === data.lunch_date.request1_id || myRequestId === data.lunch_date.request2_id ) {
          console.log('concerned')
          window.location.replace("<%= lunch_dates_path %>/" + data.lunch_date.id);
-    
+
        } else {
          console.log('not concerned in this match')
        }

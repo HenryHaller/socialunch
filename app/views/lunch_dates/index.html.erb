@@ -1,24 +1,30 @@
-<div class="date_container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h3 class="text-center">Your SociaLunch History</h3>
-      <% @lunch_dates.each do |lunch_date| %>
-        <% if current_user == lunch_date.request1.user %>
-          <% primary_user = lunch_date.request1.user %>
-          <% secondary_user = lunch_date.request2.user %>
-        <% else %>
-          <% primary_user = lunch_date.request2.user %>
-          <% secondary_user = lunch_date.request1.user %>
-        <% end %>
+
+<h3 class="text-center">Your SociaLunch History</h3>
+<% @lunch_dates.each do |lunch_date| %>
+  <% if current_user == lunch_date.request1.user %>
+    <% primary_user = lunch_date.request1.user %>
+    <% secondary_user = lunch_date.request2.user %>
+  <% else %>
+    <% primary_user = lunch_date.request2.user %>
+    <% secondary_user = lunch_date.request1.user %>
+  <% end %>
+  <div class="date_container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12">
         <div class="history">
-          <h5>Your lunch with <%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></h5>
-          <p>On <%= lunch_date.begin %> you enjoyed a SociaLunch with <%= cl_image_tag secondary_user.photo, :class => "lunch_index" %></p>
-          You ate at <%= lunch_date.venue_name %>, which is found at <%= lunch_date.vicinity %>.
-          <div>
-            Still have something to talk about? <%= link_to "Stay in touch", lunch_date_path(lunch_date) %>
+          <h5>Your lunch with <strong><%= "#{secondary_user.first_name.capitalize} #{secondary_user.last_name.capitalize}" %></strong></h5>
+          <p class="date_begin">On<%= lunch_date.begin.strftime("%c") %></p>
+          <div class="history-img">
+              <%= cl_image_tag secondary_user.photo, :class => "lunch_index" %>
+          </div>
+          <div class="history-info">
+            <p>You ate at <%= lunch_date.venue_name %>, which is found at <%= lunch_date.vicinity %>.</p>
+            <p>Still have something to talk about?<br>
+            <%= link_to "Stay in touch", lunch_date_path(lunch_date) %></p>
           </div>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
+

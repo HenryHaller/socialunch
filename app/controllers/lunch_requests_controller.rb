@@ -40,10 +40,8 @@ class LunchRequestsController < ApplicationController
       @lunch_request.save
       current_user.score += @lunch_request.score_increase
       current_user.save
+      @box = params["box"]
     end
-
-
-
     @lunch_request.save
     current_user.save
     respond_to do |format|

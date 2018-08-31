@@ -14,10 +14,9 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
-    <h5><%= link_to "SociaLunch History", lunch_dates_path %></h5>
-    <h5>Hello <%= current_user.first_name.try(:capitalize) %>!</h5>
+    <h5><%= link_to "Lunches", lunch_dates_path %></h5>
     <div id="score_box" style="background-image:url('<%= image_path("favourite-31.png") %>');">
-          <div class="score"><%= current_user.score %></div>
+          <div class="score"><strong style="color:#FD6A02"><%= current_user.score %></strong></div>
         </div>
     <!-- Links when logged in -->
     <!-- Avatar with dropdown menu -->

@@ -1,3 +1,7 @@
-document.querySelector("#score_box").innerText = <%= current_user.score %>;
+const scoreBox = document.querySelector(".score");
+console.log(scoreBox);
+
+scoreBox.innerText = "<%= current_user.score %>";
+
 
 document.querySelector(".content").insertAdjacentHTML('afterbegin', "<h5>You got <%= @lunch_request.score_increase %> points!</h5>")

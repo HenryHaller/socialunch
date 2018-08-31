@@ -9,6 +9,7 @@ class LunchDate < ApplicationRecord
   belongs_to :request2, :class_name => 'LunchRequest'
   has_many :messages, dependent: :destroy
   has_many :photos, dependent: :destroy
+  after_create :initial_message
 
   # belongs_to :restaurant
 
@@ -35,6 +36,15 @@ class LunchDate < ApplicationRecord
 
   # end
 
+  def initial_message
+    content = "Get started on your lunch plans here ;) #{self.request1.user.first_name} and #{self.request2.user.first_name}!"
+    m = Message.new(
+      lunch_date: self,
+      content: content,
+      user: User.admin
+      )
+    puts m.errors.messages unless m.save
+  end
 
   def set_place
     avg_lat = (self.request1.latitude + self.request2.latitude) / 2
@@ -78,7 +88,7 @@ class LunchDate < ApplicationRecord
         photo_url: photo.fetch_url(600),
         html_attribution: photo.html_attributions[0],
         lunch_date: self
-      )
+        )
       puts photo.errors.messages unless photo.save
     end
 

@@ -13,4 +13,7 @@
 <div>
   You ate at <%= lunch_date.venue_name %>, which is found at <%= lunch_date.vicinity %>.
 </div>
+<div>
+  Still have something to talk about? <%= link_to "Stay in touch", lunch_date_path(lunch_date) %>
+</div>
 <% end %>
